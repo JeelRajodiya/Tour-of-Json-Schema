@@ -16,8 +16,9 @@ export default function Home() {
         string | undefined
     >("");
     const [validity, setValidity] = useState<string | undefined>("");
-    const [isInvalid, setIsInvalid] = useState<boolean>(false);
-    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code]);
+    const [isInvalid, setIsInvalid] = useState<boolean>(true);
+    const [count, setCount] = useState<number>(0);
+    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
@@ -38,10 +39,11 @@ export default function Home() {
                 <Button
                     variant={"default"}
                     onClick={() => {
+                        setCount((i) => i + 1);
                         try {
                             const schema = JSON.parse(code!);
                             const validate = ajv.compile(schema);
-                            const valid = validate({});
+                            const valid = validate([1, 2, 3, 4]);
                             if (valid) {
                                 setValidity("Valid JSON schema");
                                 setIsInvalid(false);
@@ -56,7 +58,7 @@ export default function Home() {
                         }
                     }}
                 >
-                    Check
+                    Validate
                 </Button>
             </div>
         </div>

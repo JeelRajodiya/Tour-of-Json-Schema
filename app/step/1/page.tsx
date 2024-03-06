@@ -5,10 +5,12 @@ import Instructions from "../../components/Instructions";
 import styles from "./1.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
-
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
 export default function Home() {
+    const router = useRouter();
     const [code, setCode] = useState<string | undefined>(
         "// remove the comment and write a valid JSON schema here"
     );
@@ -16,7 +18,7 @@ export default function Home() {
         string | undefined
     >("");
     const [validity, setValidity] = useState<string | undefined>("");
-    const [isInvalid, setIsInvalid] = useState<boolean>(false);
+    const [isInvalid, setIsInvalid] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
     const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
     useEffect(() => {
@@ -43,7 +45,7 @@ export default function Home() {
                         try {
                             const schema = JSON.parse(code!);
                             const validate = ajv.compile(schema);
-                            const valid = validate({});
+                            const valid = validate({}) || validate([]);
                             if (valid) {
                                 setValidity("Valid JSON schema");
                                 setIsInvalid(false);
@@ -58,8 +60,16 @@ export default function Home() {
                         }
                     }}
                 >
-                    Check
+                    Validate
                 </Button>
+                {!isInvalid && (
+                    <Button
+                        variant={"success"}
+                        onClick={() => router.push("/step/2")}
+                    >
+                        Next
+                    </Button>
+                )}
             </div>
         </div>
     );

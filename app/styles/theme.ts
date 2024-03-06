@@ -16,6 +16,18 @@ const Button = {
                 bg: "hsl(var(--primary) / 0.6)",
             },
         },
+        success: {
+            color: "green",
+
+            borderColor: "green",
+            borderWidth: "1px",
+            _hover: {
+                bg: "green.100",
+            },
+            _active: {
+                bg: "green.200",
+            },
+        },
     },
 };
 export const theme = extendTheme({
