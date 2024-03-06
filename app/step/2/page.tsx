@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import CodeEditor from "../../components/CodeEditor";
 import Instructions from "../../components/Instructions";
-import styles from "./1.module.css";
+import styles from "./2.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
 
@@ -17,8 +17,7 @@ export default function Home() {
     >("");
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(false);
-    const [count, setCount] = useState<number>(0);
-    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
+    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code]);
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
@@ -39,7 +38,6 @@ export default function Home() {
                 <Button
                     variant={"default"}
                     onClick={() => {
-                        setCount((i) => i + 1);
                         try {
                             const schema = JSON.parse(code!);
                             const validate = ajv.compile(schema);
