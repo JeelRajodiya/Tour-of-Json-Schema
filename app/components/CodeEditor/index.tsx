@@ -14,7 +14,7 @@ function CodeEditor({
         <div className={styles.main}>
             <Editor
                 className={styles.editor}
-                height="70vh"
+                height="100%"
                 defaultLanguage="json"
                 defaultValue="{}"
                 value={code}
