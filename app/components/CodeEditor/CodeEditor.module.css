@@ -1,5 +1,8 @@
 .main {
 	width: 100%;
-	height: 100%;
-	background-color: red;
+	height: 80%;
+	background-color: rgb(241, 241, 241);
+	border-radius: 32px;
+	border: 1px dashed black;
+	padding: 16px;
 }
