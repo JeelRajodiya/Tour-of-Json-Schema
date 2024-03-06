@@ -1,8 +1,23 @@
+"use client";
 import React from "react";
 import styles from "./Instructions.module.css";
-
-function Instructions() {
-	return <div className={styles.main}>Instructions</div>;
+import MarkdownPreview from "@uiw/react-markdown-preview";
+function Instructions({
+	markdownInstructions,
+}: {
+	markdownInstructions: string;
+}) {
+	return (
+		<div className={styles.main} data-color-mode="light">
+			<MarkdownPreview
+				source={markdownInstructions}
+				style={{
+					backgroundColor: "transparent",
+					color: "black",
+				}}
+			/>
+		</div>
+	);
 }
 
 export default Instructions;
