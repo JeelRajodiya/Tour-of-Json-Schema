@@ -1,6 +1,6 @@
 # Introduction
 
-Hi, welcome to the tour of json schema. In this tour, we will learn about json schema and how to use it to validate json data.
+Hi, Welcome to the tour of JSON schema. In this tour, we will learn about json schema and how to use it to validate json data.
 
 ## What is JSON Schema?
 
@@ -10,8 +10,20 @@ JSON Schema is a vocabulary that allows you to annotate and validate JSON docume
 
 ```json
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"title": "Person",
-	"type": "object"
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "Product",
+    "description": "A product in the catalog",
+    "type": "object"
+}
+```
+
+### The following json data is valid against the above schema
+
+```json
+{
+    "title": "A product",
+    "description": "A product in the catalog",
+    "type": "object"
 }
 ```
