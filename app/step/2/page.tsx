@@ -6,7 +6,7 @@ import styles from "./2.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
 import Output from "@/app/components/Output";
-import { pageContext } from "../layout";
+import { pageContext } from "@/lib/context";
 
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);

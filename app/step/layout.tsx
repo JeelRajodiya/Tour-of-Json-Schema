@@ -3,15 +3,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/Navbar";
 import React, { useState } from "react";
-export const pageContext = React.createContext<
-    Readonly<{
-        pageName: string | null;
-        setPageName: React.Dispatch<React.SetStateAction<string | null>>;
-    }>
->({
-    pageName: "Hey",
-    setPageName: () => {},
-});
+import { pageContext } from "@/lib/context";
 
 export default function RootLayout({
     children,
