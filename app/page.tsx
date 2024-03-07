@@ -31,7 +31,9 @@ export default function Home() {
                     <Link href="/step/1">
                         <Button
                             variant={"default"}
-                            rightIcon={<ChevronRightIcon />}
+                            rightIcon={
+                                <ChevronRightIcon width={8} height={8} />
+                            }
                         >
                             Start The Tour
                         </Button>
