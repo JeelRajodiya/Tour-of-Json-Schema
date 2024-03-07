@@ -21,10 +21,9 @@ function CodeLayout({
         <div className={styles.main}>
             <Instructions markdownInstructions={InstructionsMarkdown!} />
             <div className={styles.editorNOutput}>
-                <CodeEditor code={code} setCode={setCode} />
+                <CodeEditor code={code} setCode={setCode} buttons={buttons} />
                 <Output>{output}</Output>
             </div>
-            <div className={styles.actionBtn}>{buttons}</div>
         </div>
     );
 }

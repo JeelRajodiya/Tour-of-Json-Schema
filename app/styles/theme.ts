@@ -4,6 +4,7 @@ import {
     theme as chakraTheme,
     extendTheme,
 } from "@chakra-ui/react";
+import { color } from "framer-motion";
 const Button = {
     variants: {
         default: {
@@ -21,8 +22,14 @@ const Button = {
 
             borderColor: "green",
             borderWidth: "1px",
+            _disabled: {
+                color: "green.700",
+            },
             _hover: {
                 bg: "green.100",
+                _disabled: {
+                    color: "green.700",
+                },
             },
             _active: {
                 bg: "green.200",

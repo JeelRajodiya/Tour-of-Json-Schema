@@ -1,26 +1,4 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    height: 90%;
-    gap: 16px;
-    width: 100%;
-}
-.actionBtn {
-    position: fixed;
-    bottom: 64px;
-    right: 64px;
-    display: flex;
-    gap: 8px;
-}
-.codeInstructions {
-    display: flex;
-    flex-direction: row;
-    height: 80%;
-    gap: 16px;
-}
-
 .validity {
     display: flex;
     justify-content: center;
-    font-size: 1.5em;
 }

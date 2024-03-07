@@ -1,13 +1,10 @@
 "use client";
 import { useContext, useEffect, useMemo, useState } from "react";
-import CodeEditor from "../../components/CodeEditor";
-import Instructions from "../../components/Instructions";
+
 import styles from "./1.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
-import Output from "@/app/components/Output";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
 
@@ -45,6 +42,7 @@ export default function Home() {
             buttons={
                 <>
                     <Button
+                        size={"sm"}
                         variant={"default"}
                         onClick={() => {
                             setCount((i) => i + 1);
@@ -69,14 +67,15 @@ export default function Home() {
                         {" "}
                         Validate{" "}
                     </Button>
-                    {!isInvalid && (
-                        <Button
-                            variant={"success"}
-                            onClick={() => router.push("/step/2")}
-                        >
-                            Next
-                        </Button>
-                    )}
+
+                    <Button
+                        size={"sm"}
+                        variant={"success"}
+                        isDisabled={isInvalid}
+                        onClick={() => router.push("/step/2")}
+                    >
+                        Next
+                    </Button>
                 </>
             }
         />

@@ -6,9 +6,11 @@ import Editor from "@monaco-editor/react";
 function CodeEditor({
     code,
     setCode,
+    buttons,
 }: {
     code: string;
     setCode: React.Dispatch<React.SetStateAction<string>>;
+    buttons: React.ReactNode;
 }) {
     return (
         <div className={styles.main}>
@@ -22,6 +24,7 @@ function CodeEditor({
                     setCode(value as string);
                 }}
             />
+            <div className={styles.actionBtn}>{buttons}</div>
         </div>
     );
 }

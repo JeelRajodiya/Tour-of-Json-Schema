@@ -5,4 +5,17 @@
     border: 1px dashed black;
     padding: 18px 4px;
     padding-left: 2px;
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+.actionBtn {
+    /* align-self: flex-end; */
+
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
 }
