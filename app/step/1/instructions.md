@@ -6,7 +6,7 @@ Hi, Welcome to the tour of JSON schema. In this tour, we will learn about json s
 
 JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It is a specification that provides a way to describe the structure of JSON data for validation, documentation, and interaction control. It is a powerful tool for validating the structure of JSON data.
 
-## In this tutorial...
+## In This Section ...
 
 We'll write any JSON schema and check if it's valid or not
 

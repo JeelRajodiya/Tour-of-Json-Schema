@@ -1,6 +1,6 @@
 # Creating A Simple Schema
 
-In this tutorial, we'll create a simple schema for array of number type
+In this section, we'll create a simple schema for array of number type
 
 Example data
 
