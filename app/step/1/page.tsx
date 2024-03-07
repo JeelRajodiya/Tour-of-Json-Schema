@@ -51,7 +51,7 @@ export default function Home() {
                                 const validate = ajv.compile(schema);
                                 const valid = validate({}) || validate([]);
                                 if (code !== "{}" && valid) {
-                                    setValidity("Correct! 🎉🎉");
+                                    setValidity("Yes! This is a valid schema!");
 
                                     setIsInvalid(false);
                                 } else {
