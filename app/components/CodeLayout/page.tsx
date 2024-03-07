@@ -1,13 +1,8 @@
-import { useContext, useEffect, useMemo, useState } from "react";
 import CodeEditor from "../CodeEditor";
 import Instructions from "../Instructions";
 import styles from "./CodeLayout.module.css";
-import { Box, Button, Flex } from "@chakra-ui/react";
-import Ajv from "ajv/dist/2020";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+
 import Output from "@/app/components/Output";
-import { pageContext } from "@/lib/context";
 
 function CodeLayout({
     InstructionsMarkdown,
@@ -16,9 +11,9 @@ function CodeLayout({
     output,
     buttons,
 }: {
-    InstructionsMarkdown: string | undefined;
-    code: string | undefined;
-    setCode: React.Dispatch<React.SetStateAction<string | undefined>>;
+    InstructionsMarkdown: string;
+    code: string;
+    setCode: React.Dispatch<React.SetStateAction<string>>;
     output: React.ReactNode;
     buttons: React.ReactNode;
 }) {

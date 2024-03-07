@@ -17,10 +17,9 @@ export default function Home() {
     const { pageName, setPageName } = useContext(pageContext);
 
     const router = useRouter();
-    const [code, setCode] = useState<string | undefined>("{}");
-    const [InstructionsMarkdown, setInstructionsMarkdown] = useState<
-        string | undefined
-    >("");
+    const [code, setCode] = useState<string>("{}");
+    const [InstructionsMarkdown, setInstructionsMarkdown] =
+        useState<string>("");
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
