@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
-import { pageContext } from "@/app/step/layout";
+import { pageContext } from "@/lib/context";
 import { useContext } from "react";
 function Navbar() {
     const { pageName, setPageName } = useContext(pageContext);
