@@ -31,55 +31,6 @@ export default function Home() {
         setPageName("Step 1: Writing a valid schema");
     }, []);
     return (
-        // <div className={styles.main}>
-        //     <Instructions markdownInstructions={InstructionsMarkdown!} />
-        //     <div className={styles.editorNOutput}>
-        //         <CodeEditor code={code} setCode={setCode} />
-        //         <Output>
-        //             <div
-        //                 className={styles.validity}
-        //                 style={{ color: isInvalid ? "red" : "green" }}
-        //             >
-        //                 {validity}
-        //             </div>
-        //         </Output>
-        //     </div>
-        //     <div className={styles.actionBtn}>
-        //         <Button
-        //             variant={"default"}
-        //             onClick={() => {
-        //                 setCount((i) => i + 1);
-        //                 try {
-        //                     const schema = JSON.parse(code!);
-        //                     const validate = ajv.compile(schema);
-        //                     const valid = validate({}) || validate([]);
-        //                     if (valid) {
-        //                         setValidity("🎉🎉Valid JSON schema");
-        //                         setIsInvalid(false);
-        //                     } else {
-        //                         setValidity("Invalid JSON schema");
-        //                         setIsInvalid(true);
-        //                     }
-        //                 } catch (e) {
-        //                     console.log(e);
-        //                     setValidity("Invalid JSON schema");
-        //                     setIsInvalid(true);
-        //                 }
-        //             }}
-        //         >
-        //             Validate
-        //         </Button>
-        //         {!isInvalid && (
-        //             <Button
-        //                 variant={"success"}
-        //                 onClick={() => router.push("/step/2")}
-        //             >
-        //                 Next
-        //             </Button>
-        //         )}
-
-        //     </div>
-        // </div>
         <CodeLayout
             InstructionsMarkdown={InstructionsMarkdown}
             code={code}
@@ -93,31 +44,41 @@ export default function Home() {
                 </div>
             }
             buttons={
-                <Button
-                    variant={"default"}
-                    onClick={() => {
-                        setCount((i) => i + 1);
-                        try {
-                            const schema = JSON.parse(code!);
-                            const validate = ajv.compile(schema);
-                            const valid = validate({}) || validate([]);
-                            if (valid) {
-                                setValidity("🎉🎉Valid JSON schema");
-                                setIsInvalid(false);
-                            } else {
+                <>
+                    <Button
+                        variant={"default"}
+                        onClick={() => {
+                            setCount((i) => i + 1);
+                            try {
+                                const schema = JSON.parse(code!);
+                                const validate = ajv.compile(schema);
+                                const valid = validate({}) || validate([]);
+                                if (valid) {
+                                    setValidity("🎉🎉Valid JSON schema");
+                                    setIsInvalid(false);
+                                } else {
+                                    setValidity("Invalid JSON schema");
+                                    setIsInvalid(true);
+                                }
+                            } catch (e) {
+                                console.log(e);
                                 setValidity("Invalid JSON schema");
                                 setIsInvalid(true);
                             }
-                        } catch (e) {
-                            console.log(e);
-                            setValidity("Invalid JSON schema");
-                            setIsInvalid(true);
-                        }
-                    }}
-                >
-                    {" "}
-                    Validate{" "}
-                </Button>
+                        }}
+                    >
+                        {" "}
+                        Validate{" "}
+                    </Button>
+                    {!isInvalid && (
+                        <Button
+                            variant={"success"}
+                            onClick={() => router.push("/step/2")}
+                        >
+                            Next
+                        </Button>
+                    )}
+                </>
             }
         />
     );
