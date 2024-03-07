@@ -3,21 +3,22 @@ import React from "react";
 import styles from "./Instructions.module.css";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 function Instructions({
-	markdownInstructions,
+    markdownInstructions,
 }: {
-	markdownInstructions: string;
+    markdownInstructions: string;
 }) {
-	return (
-		<div className={styles.main} data-color-mode="light">
-			<MarkdownPreview
-				source={markdownInstructions}
-				style={{
-					backgroundColor: "transparent",
-					color: "black",
-				}}
-			/>
-		</div>
-	);
+    return (
+        <div className={styles.main} data-color-mode="light">
+            <MarkdownPreview
+                source={markdownInstructions}
+                style={{
+                    backgroundColor: "transparent",
+                    color: "black",
+                    height: "100%",
+                }}
+            />
+        </div>
+    );
 }
 
 export default Instructions;

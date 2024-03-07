@@ -7,6 +7,7 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Output from "@/app/components/Output";
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
 export default function Home() {
@@ -31,12 +32,14 @@ export default function Home() {
                 <Instructions markdownInstructions={InstructionsMarkdown!} />
                 <CodeEditor code={code} setCode={setCode} />
             </div>
-            <div
-                className={styles.validity}
-                style={{ color: isInvalid ? "red" : "green" }}
-            >
-                {validity}
-            </div>
+            <Output>
+                <div
+                    className={styles.validity}
+                    style={{ color: isInvalid ? "red" : "green" }}
+                >
+                    {validity}
+                </div>
+            </Output>
             <div className={styles.actionBtn}>
                 <Button
                     variant={"default"}
