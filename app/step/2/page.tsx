@@ -11,11 +11,11 @@ import { pageContext } from "@/lib/context";
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
 export default function Home() {
-    const [code, setCode] = useState<string | undefined>("{}");
+    const [code, setCode] = useState<string>("{}");
     const [InstructionsMarkdown, setInstructionsMarkdown] = useState<
         string | undefined
     >("");
-    const [validity, setValidity] = useState<string | undefined>("");
+    const [validity, setValidity] = useState<string>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
     const { pageName, setPageName } = useContext(pageContext);
@@ -26,6 +26,7 @@ export default function Home() {
         setInstructionsMarkdown(textFile);
         setPageName("Step 2: Validating an array of numbers");
     }, []);
+
     return (
         <div className={styles.main}>
             <div className={styles.codeInstructions}>

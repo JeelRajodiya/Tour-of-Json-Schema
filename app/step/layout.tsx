@@ -7,9 +7,9 @@ import { pageContext } from "@/lib/context";
 
 export default function RootLayout({
     children,
-}: Readonly<{
+}: {
     children: React.ReactNode;
-}>) {
+}) {
     const [pageName, setPageName] = useState<string | null>(null);
 
     return (

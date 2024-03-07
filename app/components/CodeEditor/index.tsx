@@ -7,8 +7,8 @@ function CodeEditor({
     code,
     setCode,
 }: {
-    code: string | undefined;
-    setCode: React.Dispatch<React.SetStateAction<string | undefined>>;
+    code: string;
+    setCode: React.Dispatch<React.SetStateAction<string>>;
 }) {
     return (
         <div className={styles.main}>
@@ -19,7 +19,7 @@ function CodeEditor({
                 defaultValue="{}"
                 value={code}
                 onChange={(value) => {
-                    setCode(value);
+                    setCode(value as string);
                 }}
             />
         </div>
