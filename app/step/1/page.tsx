@@ -50,16 +50,17 @@ export default function Home() {
                                 const schema = JSON.parse(code!);
                                 const validate = ajv.compile(schema);
                                 const valid = validate({}) || validate([]);
-                                if (valid) {
-                                    setValidity("🎉🎉Valid JSON schema");
+                                if (code !== "{}" && valid) {
+                                    setValidity("Correct! 🎉🎉");
+
                                     setIsInvalid(false);
                                 } else {
-                                    setValidity("Invalid JSON schema");
+                                    setValidity("Invalid schema provided!");
                                     setIsInvalid(true);
                                 }
                             } catch (e) {
-                                console.log(e);
-                                setValidity("Invalid JSON schema");
+                                setValidity("Invalid schema provided!");
+
                                 setIsInvalid(true);
                             }
                         }}

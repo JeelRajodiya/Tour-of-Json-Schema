@@ -39,7 +39,7 @@ export default function Home() {
                 </div>
             </div>
             <div>
-                created by &nbsp;
+                created by&nbsp;
                 <Link
                     href="https://github.com/JeelRajodiya"
                     target="_blank"

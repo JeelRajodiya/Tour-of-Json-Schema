@@ -49,16 +49,17 @@ export default function Home() {
                                 const schema = JSON.parse(code!);
                                 const validate = ajv.compile(schema);
                                 const valid = validate([1, 2, 5, 6, 8, 9]);
-                                if (valid) {
-                                    setValidity("🎉🎉Valid JSON schema");
+                                if (code !== "{}" && valid) {
+                                    setValidity("Correct! 🎉🎉");
                                     setIsInvalid(false);
                                 } else {
-                                    setValidity("Invalid JSON schema");
+                                    setValidity("Invalid schema provided!");
+
                                     setIsInvalid(true);
                                 }
                             } catch (e) {
                                 console.log(e);
-                                setValidity("Invalid JSON schema");
+                                setValidity("Invalid schema provided!");
                                 setIsInvalid(true);
                             }
                         }}
@@ -73,7 +74,7 @@ export default function Home() {
                         onClick={() => router.push("/")}
                         size={"sm"}
                     >
-                        Go to Home
+                        Home
                     </Button>
                 </>
             }
