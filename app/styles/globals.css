@@ -1,5 +1,5 @@
 body {
-    padding: 32px;
+    padding: 16px;
     height: 100%;
 }
 html {
@@ -10,5 +10,5 @@ html {
 }
 
 main {
-    height: 90%;
+    height: 100%;
 }

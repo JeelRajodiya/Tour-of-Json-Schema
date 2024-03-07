@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import CodeEditor from "../../components/CodeEditor";
 import Instructions from "../../components/Instructions";
 import styles from "./1.module.css";
@@ -8,9 +8,12 @@ import Ajv from "ajv/dist/2020";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Output from "@/app/components/Output";
+import { pageContext } from "../layout";
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
 export default function Home() {
+    const { pageName, setPageName } = useContext(pageContext);
+
     const router = useRouter();
     const [code, setCode] = useState<string | undefined>(
         "// remove the comment and write a valid JSON schema here"
@@ -25,6 +28,7 @@ export default function Home() {
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
+        setPageName("Step 1: Writing a valid schema");
     }, []);
     return (
         <div className={styles.main}>
@@ -50,7 +54,7 @@ export default function Home() {
                             const validate = ajv.compile(schema);
                             const valid = validate({}) || validate([]);
                             if (valid) {
-                                setValidity("Valid JSON schema");
+                                setValidity("🎉🎉Valid JSON schema");
                                 setIsInvalid(false);
                             } else {
                                 setValidity("Invalid JSON schema");

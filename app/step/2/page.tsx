@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import CodeEditor from "../../components/CodeEditor";
 import Instructions from "../../components/Instructions";
 import styles from "./2.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import Ajv from "ajv/dist/2020";
 import Output from "@/app/components/Output";
+import { pageContext } from "../layout";
 
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
@@ -19,10 +20,13 @@ export default function Home() {
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
+    const { pageName, setPageName } = useContext(pageContext);
+
     const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
+        setPageName("Step 2: Validating an array of numbers");
     }, []);
     return (
         <div className={styles.main}>
@@ -49,7 +53,7 @@ export default function Home() {
                             const validate = ajv.compile(schema);
                             const valid = validate([1, 2, 3, 4]);
                             if (valid) {
-                                setValidity("Valid JSON schema");
+                                setValidity("🎉🎉Valid JSON schema");
                                 setIsInvalid(false);
                             } else {
                                 setValidity("Invalid JSON schema");
