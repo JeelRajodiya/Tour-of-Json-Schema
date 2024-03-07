@@ -17,7 +17,7 @@ export default function Home() {
 
     const router = useRouter();
     const [code, setCode] = useState<string | undefined>(
-        "// remove the comment and write a valid JSON schema here"
+        "{}"
     );
     const [InstructionsMarkdown, setInstructionsMarkdown] = useState<
         string | undefined

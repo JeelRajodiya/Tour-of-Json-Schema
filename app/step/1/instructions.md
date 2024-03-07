@@ -8,7 +8,7 @@ JSON Schema is a vocabulary that allows you to annotate and validate JSON docume
 
 ## In This Section ...
 
-We'll write any JSON schema and check if it's valid or not
+We'll write JSON schema (Draft 2020-12) for any JSON data and check if it's valid or not
 
 ## Example
 

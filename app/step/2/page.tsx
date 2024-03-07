@@ -11,9 +11,7 @@ import { pageContext } from "@/lib/context";
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
 export default function Home() {
-    const [code, setCode] = useState<string | undefined>(
-        "// remove the comment and write a valid JSON schema here"
-    );
+    const [code, setCode] = useState<string | undefined>("{}");
     const [InstructionsMarkdown, setInstructionsMarkdown] = useState<
         string | undefined
     >("");
