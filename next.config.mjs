@@ -15,7 +15,8 @@ const nextConfig = {
      ignoreBuildErrors: true,
   },
   output:"export",
-  basePath:"/out"
+  basePath:"/Tour-of-Json-Schema"
+  
 
 };
 
