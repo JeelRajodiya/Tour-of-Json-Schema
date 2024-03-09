@@ -1,11 +1,2 @@
-# Minimal Next.js Template
-
-## Integrations
-
-- MongoDB
-- Chakra UI
-- Next Auth
-- TypeScript
-- ESLint
-- Prettier
+# Repo for Tour of JSON Schema ( Qualification Task )
 
