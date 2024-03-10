@@ -12,7 +12,7 @@ function Navbar() {
                 href={"/"}
                 style={{ display: "flex", gap: "8px", alignItems: "center" }}
             >
-                <Image
+                <img
                     alt="logo"
                     src="/icons/json-schema-blue.png"
                     width={44}
