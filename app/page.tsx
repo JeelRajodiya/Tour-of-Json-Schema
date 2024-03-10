@@ -7,16 +7,16 @@ import styles from "./styles/page.module.css";
 import Image from "next/image";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Link from "next/link";
+import JsonIcon from "@/public/icons/json-schema-blue.png";
 export default function Home() {
     return (
         <div className={styles.main}>
             <div className={styles.wrapper}>
                 <div className={styles.iconAndTitle}>
-                    <Image
+                    <img
                         alt="logo"
-                        src="/icons/json-schema-blue.png"
-                        width={64}
-                        height={64}
+                        src={JsonIcon.src}
+                        style={{ width: "64px", height: "64px" }}
                     />
                     <div className={styles.title}>
                         <div>Tour Of</div>

@@ -3,6 +3,7 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { pageContext } from "@/lib/context";
 import { useContext } from "react";
+import jsonIcon from "@/public/icons/json-schema-blue.png";
 function Navbar() {
     const { pageName, setPageName } = useContext(pageContext);
 
@@ -14,9 +15,8 @@ function Navbar() {
             >
                 <img
                     alt="logo"
-                    src="/icons/json-schema-blue.png"
-                    width={44}
-                    height={44}
+                    src={jsonIcon.src}
+                    style={{ width: "44px", height: "44px" }}
                 />
                 <span className={styles.title}>Tour of JSON Schema</span>
             </Link>
