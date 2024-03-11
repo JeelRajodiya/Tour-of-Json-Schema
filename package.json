@@ -16,12 +16,14 @@
 		"@monaco-editor/react": "^4.6.0",
 		"@uiw/react-markdown-preview": "^5.0.10",
 		"framer-motion": "^11.0.6",
+		"jsonschema": "^1.4.1",
 		"marked": "^12.0.1",
 		"mongodb": "^6.3.0",
 		"next": "14.1.3",
 		"next-auth": "^4.24.6",
 		"react": "^18",
-		"react-dom": "^18"
+		"react-dom": "^18",
+		"z-schema": "^6.0.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.23",

@@ -1,0 +1,7 @@
+-   [jsonschema](https://www.npmjs.com/package/jsonschema) - 1.8K stars
+-   [ajv](https://www.npmjs.com/package/ajv) - 13.2K stars
+-   [json-modal](https://www.npmjs.com/package/json-model) - 43 stars
+-   [tv4](https://www.npmjs.com/package/tv4) - 1.2K stars
+-   [z-schema](https://www.npmjs.com/package/z-schema) - 338 stars
+-   [djv](https://www.npmjs.com/package/djv) - 289 stars
+-   [jseen](https://www.npmjs.com/package/jsen) - 156 stars
