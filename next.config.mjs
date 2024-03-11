@@ -14,7 +14,7 @@ const nextConfig = {
     typescript: {
      ignoreBuildErrors: true,
   },
-  output:"export",
+  output:process.env.HOST ==="Vercel"?"" : "export",
   basePath:process.env.HOST === "Vercel" ? "" : "/Tour-of-Json-Schema"
   
 
