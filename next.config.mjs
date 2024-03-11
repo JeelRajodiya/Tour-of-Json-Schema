@@ -15,7 +15,7 @@ const nextConfig = {
      ignoreBuildErrors: true,
   },
   output:"export",
-  basePath:process.HOST === "Vercel" ? "/" : "/Tour-of-Json-Schema"
+  basePath:process.env.HOST === "Vercel" ? "/" : "/Tour-of-Json-Schema"
   
 
 };
