@@ -19,7 +19,7 @@ export default function Home() {
                         style={{ width: "64px", height: "64px" }}
                     />
                     <div className={styles.title}>
-                        <div>Tour Of test</div>
+                        <div>Tour Of</div>
                         <div>JSON</div>
                         <div>Schema</div>
                     </div>
