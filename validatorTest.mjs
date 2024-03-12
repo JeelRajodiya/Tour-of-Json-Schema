@@ -66,8 +66,28 @@ function tv4Validate(data, schema){
 	console.log(valid);
 }
 //  gives a long error 
+// Error
+//     at new ValidationError (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:1461:12)
+//     at ValidatorContext.createError (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:359:14) 
+//     at ValidatorContext.validateType (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:751:14)
+//     at ValidatorContext.validateBasic (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:721:19)
+//     at ValidatorContext.validateAll (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:599:19) 
+//     at ValidatorContext.validateArrayItems (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:947:21)
+//     at ValidatorContext.validateArray (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:880:11)
+//     at ValidatorContext.validateAll (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:602:11) 
+//     at Object.validate (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:1573:24)
+//     at tv4Validate (file:///d:/languages/web/projects/Tour-of-Json-Schema/validatorTest.mjs:64:18) {
+//   params: { type: 'number', expected: 'string' },
+//   code: 0,
+//   dataPath: '',
+//   schemaPath: '',
+//   subErrors: null
+// }
+
 
 // ----------------------------------------------
+// Can not test it for some reason 
+
 // import ZSchema from "z-schema"
 // const validator = new ZSchema()
 // import request from 'request'
@@ -86,7 +106,7 @@ function tv4Validate(data, schema){
 
 // })
 
-
+// ---------------------------------------------------
 import djv from "djv"
 
 function djvValidate(data, schema){
