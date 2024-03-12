@@ -97,7 +97,7 @@ function djvValidate(data, schema){
 }
 
 
-// gives short errors { keyword: 'type', dataPath: "'+i1+'", schemaPath: '#/items/type' }
+// errors { keyword: 'type', dataPath: "'+i1+'", schemaPath: '#/items/type' }
 
 // ----------------------------------------------
 import jsen from "jsen"
@@ -107,7 +107,7 @@ const validate = jsen(schema)
 const valid = validate(data)
 console.log(validate.errors)
 }
-// [ { path: '0', keyword: 'type' } ]
+//error: [ { path: '0', keyword: 'type' } ]
 
 
 // ----------------------------------------------
