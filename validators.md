@@ -5,3 +5,4 @@
 -   [jsen](https://www.npmjs.com/package/jsen) - 156 stars
 -   [is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid) - 1K stars
 -   [z-schema](https://www.npmjs.com/package/z-schema) - 338 stars
+-   [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema) - 171 Stars

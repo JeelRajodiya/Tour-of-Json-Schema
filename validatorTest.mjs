@@ -1,14 +1,17 @@
 
 
 // ----------------------------------------------
-import { Validator } from "jsonschema";
+import { Validator,SchemaError } from "jsonschema";
 
 function jsonschema(data, schema) {
 	var v = new Validator();
-	const validateRes = v.validate(data, schema);
+
+	const validateRes = v.validate(data, schema,{nestedErrors:true,throwError:true,throwAll:true});
+	console.log(validateRes.valid);
 
 	console.log(validateRes.errors);
-
+	
+	// ----- Error on Wrong type -----
 	//   ValidationError {
 	//     path: [ 3 ],
 	//     property: 'instance[3]',
@@ -20,6 +23,9 @@ function jsonschema(data, schema) {
 	//     stack: 'instance[3] is not of a type(s) string'
 	//   }
 
+	//  ----- Syntax Error -----
+	// Does not throw error
+
 }
 // ----------------------------------------------
 import Ajv from "ajv/dist/2020.js"
@@ -28,8 +34,10 @@ function ajv(data, schema){
 
 	const validate = ajv.compile(schema)
 	const valid = validate(data)
-	if (!valid) console.log(validate.errors)
+	console.log("valid:",valid);
+	console.log(validate.errors);
 
+	// ----- Error on Wrong type -----
 	//   {
 	//     instancePath: '/1',
 	//     schemaPath: '#/items/type',
@@ -37,6 +45,10 @@ function ajv(data, schema){
 	//     params: { type: 'string' },
 	//     message: 'must be string'
 	//   },
+
+	//  ----- Syntax Error -----
+	// Error: strict mode: unknown keyword: "$schemaadf"
+	//  gives a comprehensive error
 
 }
 // ----------------------------------------------
@@ -53,25 +65,20 @@ function tv4Validate(data, schema){
 	var valid = tv4.validate(data, schema);
 
 	console.log(valid);
+	//  ---- Error on Wrong type -----
+	// {
+	//   params: { type: 'number', expected: 'string' },
+	//   code: 0,
+	//   dataPath: '',
+	//   schemaPath: '',
+	//   subErrors: null
+	// }
+
+	
+	//  ----- Syntax Error -----
+	// Does not throw a relevant  error
 }
-//  gives a long error 
-// Error
-//     at new ValidationError (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:1461:12)
-//     at ValidatorContext.createError (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:359:14) 
-//     at ValidatorContext.validateType (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:751:14)
-//     at ValidatorContext.validateBasic (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:721:19)
-//     at ValidatorContext.validateAll (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:599:19) 
-//     at ValidatorContext.validateArrayItems (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:947:21)
-//     at ValidatorContext.validateArray (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:880:11)
-//     at ValidatorContext.validateAll (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:602:11) 
-//     at Object.validate (d:\languages\web\projects\Tour-of-Json-Schema\node_modules\tv4\tv4.js:1573:24)
-//     at tv4Validate (file:///d:/languages/web/projects/Tour-of-Json-Schema/validatorTest.mjs:64:18) {
-//   params: { type: 'number', expected: 'string' },
-//   code: 0,
-//   dataPath: '',
-//   schemaPath: '',
-//   subErrors: null
-// }
+
 
 
 // ----------------------------------------------
@@ -103,20 +110,36 @@ function djvValidate(data, schema){
 	env.addSchema('test', schema)
 	const errors = env.validate('test', data)
 	console.log(errors);
+	// ---- Error on Wrong type -----
+	// errors { keyword: 'type', dataPath: "'+i1+'", schemaPath: '#/items/type' }
+	// ----- Syntax Error -----
+	// It throws an error when there is a syntax error, but the error is completely irrelevant
+
+	// The error is:
+
+	// 	undefined:19
+	// if (()) return {
+	//      ^
+
+	// SyntaxError: Unexpected token ')'
+	//     at new Function (<anonymous>)
 }
 
 
-// errors { keyword: 'type', dataPath: "'+i1+'", schemaPath: '#/items/type' }
 
 // ----------------------------------------------
 import jsen from "jsen"
 
 function jsenValidate(data, schema){
-const validate = jsen(schema)
-const valid = validate(data)
-console.log(validate.errors)
+	const validate = jsen(schema)
+	const valid = validate(data)
+	console.log(validate);
+	console.log(validate.errors)
+	// ---- Error on Wrong type -----
+	//error: [ { path: '0', keyword: 'type' } ]
+	// ----- Syntax Error -----
+	// does not throw an error
 }
-//error: [ { path: '0', keyword: 'type' } ]
 
 
 // ----------------------------------------------
@@ -128,14 +151,21 @@ function isMyJsonValid(data, schema){
 	console.log(validate(data,{verbose:true}))
 	console.log(validate.errors);
 	return validate
+	// ---- Error on Wrong type -----
+	// output: 
+	// [
+	//   { field: 'data.0', message: 'is the wrong type' },
+	//   { field: 'data.1', message: 'is the wrong type' },
+	//   { field: 'data.2', message: 'is the wrong type' },
+	//   { field: 'data.3', message: 'is the wrong type' }
+	// ]
+
+	// ----- Syntax Error -----
+	// 	          throw new Error('Unknown type: ' + t)
+	//                 ^
+
+	// Error: Unknown type: strisng
 }
-// output: 
-// [
-//   { field: 'data.0', message: 'is the wrong type' },
-//   { field: 'data.1', message: 'is the wrong type' },
-//   { field: 'data.2', message: 'is the wrong type' },
-//   { field: 'data.3', message: 'is the wrong type' }
-// ]
 
 
 // ----------------------------------------------
@@ -158,10 +188,16 @@ const schema = {
     "items": {
 		"type": "string"
     },
-	"$id": "https://json-schema.org/draft/2020-12"
 }
 
 
 const data = [1, 2, 3, 5]
-hyperjumpValidate(data, schema)
+// jsonschema(data, schema)
+// ajv(data, schema)
+// tv4Validate(data, schema)
+
+// djvValidate(data, schema)
+// jsenValidate(data, schema)
+isMyJsonValid(data, schema)
+// hyperjumpValidate(data, schema)
 
