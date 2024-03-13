@@ -1,16 +1,5 @@
 
-const schema = {
-	"$schema": "https://json-schema.org/draft/2020-12/schema",
-	
-    "type": "array",
-    "items": {
-		"type": "string"
-    },
-	"$id": "https://json-schema.org/draft/2020-12"
-}
 
-
-const data = [1, 2, 3, 5]
 // ----------------------------------------------
 import { Validator } from "jsonschema";
 
@@ -138,6 +127,7 @@ function isMyJsonValid(data, schema){
 
 	console.log(validate(data,{verbose:true}))
 	console.log(validate.errors);
+	return validate
 }
 // output: 
 // [
@@ -150,12 +140,28 @@ function isMyJsonValid(data, schema){
 
 // ----------------------------------------------
 
-import { validate,registerSchema, } from "@hyperjump/json-schema/draft-2020-12"
+import { validate,registerSchema,setMetaSchemaOutputFormat, } from "@hyperjump/json-schema/draft-2020-12"
 // import {BASIC} from "@hyperjump/json-schema/experimental"
-
-async function hyperjumpValidate(data, schema, BASIC){
-	registerSchema ("http://example.com/schemas/string", schema);
-	const output = await validate("http://example.com/schemas/string", data, BASIC);
+import { BASIC } from "@hyperjump/json-schema/experimental";
+setMetaSchemaOutputFormat(BASIC)
+async function hyperjumpValidate(data, schema){
+	registerSchema ( schema,"http://example.com/schemas/string");
+	const output = await validate("http://example.com/schemas/string", data);
 	// console.log(BASIC);
 	console.log(output);
 }
+
+const schema = {
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	
+    "type": "array",
+    "items": {
+		"type": "string"
+    },
+	"$id": "https://json-schema.org/draft/2020-12"
+}
+
+
+const data = [1, 2, 3, 5]
+hyperjumpValidate(data, schema)
+

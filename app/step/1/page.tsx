@@ -3,10 +3,11 @@ import { useContext, useEffect, useMemo, useState } from "react";
 
 import styles from "./1.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
-import Ajv from "ajv/dist/2020";
+
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
+import { hyperjumpValidate } from "@/lib/validators";
 
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
@@ -20,7 +21,7 @@ export default function Home() {
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
-    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
+
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
@@ -44,13 +45,17 @@ export default function Home() {
                     <Button
                         size={"sm"}
                         variant={"default"}
-                        onClick={() => {
+                        onClick={async () => {
                             setCount((i) => i + 1);
                             try {
                                 const schema = JSON.parse(code!);
-                                const validate = ajv.compile(schema);
-                                const valid = validate({}) || validate([]);
-                                if (code !== "{}" && valid) {
+
+                                const valid = await hyperjumpValidate(
+                                    [],
+                                    schema
+                                );
+                                console.log(valid);
+                                if (valid) {
                                     setValidity("Yes! This is a valid schema!");
 
                                     setIsInvalid(false);
@@ -59,7 +64,7 @@ export default function Home() {
                                     setIsInvalid(true);
                                 }
                             } catch (e) {
-                                setValidity("Invalid schema provided!");
+                                setValidity((e as Error).message);
 
                                 setIsInvalid(true);
                             }

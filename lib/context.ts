@@ -6,6 +6,6 @@ export const pageContext = React.createContext<
         setPageName: React.Dispatch<React.SetStateAction<string | null>>;
     }>
 >({
-    pageName: "Hey",
+    pageName: "",
     setPageName: () => {},
 });

@@ -2,10 +2,10 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import styles from "./2.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
-import Ajv from "ajv/dist/2020";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
+import { hyperjumpValidate, isMyJsonValid } from "@/lib/validators";
 
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
 // ajv.addMetaSchema(draft7MetaSchema);
@@ -18,8 +18,6 @@ export default function Home() {
         useState<string>("");
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
-    const [count, setCount] = useState<number>(0);
-    const ajv = useMemo(() => new Ajv({ allErrors: true }), [code, count]);
     useEffect(() => {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
@@ -43,24 +41,39 @@ export default function Home() {
                     <Button
                         size={"sm"}
                         variant={"default"}
-                        onClick={() => {
-                            setCount((i) => i + 1);
+                        onClick={async () => {
                             try {
                                 const schema = JSON.parse(code!);
-                                const validate = ajv.compile(schema);
-                                const valid = validate([1, 2, 5, 6, 8, 9]);
-                                if (code !== "{}" && valid) {
+
+                                const output = await hyperjumpValidate(
+                                    [1, 2, 3],
+                                    schema
+                                );
+                                console.log(output);
+                                if (output.valid) {
                                     setValidity("Yes! This is a valid schema!");
 
                                     setIsInvalid(false);
                                 } else {
-                                    setValidity("Invalid schema provided!");
+                                    console.log(output);
+                                    const validation2 = isMyJsonValid(
+                                        [1, 2, 3],
+                                        schema
+                                    );
+                                    console.log(validation2);
+                                    let errorString = "";
+                                    for (const error of validation2) {
+                                        errorString +=
+                                            JSON.stringify(error) + "      ";
+                                    }
+
+                                    setValidity(errorString);
 
                                     setIsInvalid(true);
                                 }
                             } catch (e) {
                                 console.log(e);
-                                setValidity("Invalid schema provided!");
+                                setValidity(e.message);
                                 setIsInvalid(true);
                             }
                         }}
