@@ -2,7 +2,7 @@ I have tried several JSON schema validators and tested them for verbosity in err
 
 ## Error Verbosity
 
-**Silent**: No error messages are displayed; errors are logged without any output to the user interface.
+**Silent**: No error messages are displayed.
 
 **Minimal**: Basic error messages are provided, typically indicating only the type of error without additional context or details.
 
@@ -10,14 +10,12 @@ I have tried several JSON schema validators and tested them for verbosity in err
 
 **Verbose**: Offers detailed error messages with additional context, such as stack traces or relevant variable values, to aid in troubleshooting.
 
-**Debug**: Provides extensive information useful for debugging purposes, including detailed diagnostic messages, verbose output, and additional logging.
-
 | Validator                                                          | Syntax Error | Mismatch Error |
 | ------------------------------------------------------------------ | ------------ | -------------- |
 | [jsonschema](https://www.npmjs.com/package/jsonschema)             | ❌ Silent    | ✅ Verbose     |
-| [ajv](https://www.npmjs.com/package/ajv)                           | ✅ Standard  | ✅ Verbpse     |
-| [tv4](https://www.npmjs.com/package/tv4)                           | ❌ Silent    | ✅ Standard    |
+| [ajv](https://www.npmjs.com/package/ajv)                           | ✅ Standard  | ✅ Minimal     |
+| [tv4](https://www.npmjs.com/package/tv4)                           | ❌ Silent    | ✅ Minimal     |
 | [djv](https://www.npmjs.com/package/djv)                           | ❌ Silent    | ✅ Minimal     |
 | [jsen](https://www.npmjs.com/package/jsen)                         | ❌ Silent    | ✅ Minimal     |
-| [is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid) | ✅ Standard  | ✅ Minimal     |
+| [is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid) | ✅ Standard  | ✅ Standard    |
 | [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)  | ✅ Standard  | ❌ Silent      |
