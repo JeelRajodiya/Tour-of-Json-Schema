@@ -211,12 +211,14 @@ const schema = {
 
 
 const data = [1, 2, 3, 5]
+const schema2 = JSON.stringify(schema)+ "adf"
 // jsonschema(data, schema)
-// ajv(data, schema)
+// ajv(data, schema2)
 // tv4Validate(data, schema)
 
 // djvValidate(data, schema)
 // jsenValidate(data, schema)
 // isMyJsonValid(data, schema)
-hyperjumpValidate(data, schema)
+JSON.parse(schema2)
+hyperjumpValidate(data, schema2)
 

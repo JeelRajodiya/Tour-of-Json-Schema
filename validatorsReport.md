@@ -1,5 +1,6 @@
 I have tried several JSON schema validators and tested them for verbosity in errors both syntex and mis-match in the schema and data
 
+> see [this file](https://github.com/JeelRajodiya/Tour-of-Json-Schema/blob/main/validatorTest.mjs) to see the testing code
 ## Error Verbosity
 
 **Silent**: No error messages are displayed.

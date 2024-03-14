@@ -72,8 +72,7 @@ export default function Home() {
                                     setIsInvalid(true);
                                 }
                             } catch (e) {
-                                console.log(e);
-                                setValidity(e.message);
+                                setValidity((e as Error).message);
                                 setIsInvalid(true);
                             }
                         }}

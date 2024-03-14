@@ -20,7 +20,6 @@ export default function Home() {
         useState<string>("");
     const [validity, setValidity] = useState<string | undefined>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
-    const [count, setCount] = useState<number>(0);
 
     useEffect(() => {
         const textFile = require("./instructions.md");
@@ -46,7 +45,6 @@ export default function Home() {
                         size={"sm"}
                         variant={"default"}
                         onClick={async () => {
-                            setCount((i) => i + 1);
                             try {
                                 const schema = JSON.parse(code!);
 
