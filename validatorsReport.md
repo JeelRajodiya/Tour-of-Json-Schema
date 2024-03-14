@@ -25,4 +25,4 @@ I have tried several JSON schema validators and tested them for verbosity in err
 
 I tried searching the web for the standard compliance of the validators but could not find any latest information. The one I found was [this](https://github.com/ebdrup/json-schema-benchmark) which is 4 years old and does not include the latest 2020-12 drafts. So I have decided to consider hyperjump as the most compliant according to the [bowtie report](https://bowtie.report/#/?language=javascript&language=typescript)
 
-> Create an [issue](https://github.com/bowtie-json-schema/bowtie/issues/1018) on bowtie to support more implementations
+> Created an [issue](https://github.com/bowtie-json-schema/bowtie/issues/1018) on bowtie to support more implementations :)
