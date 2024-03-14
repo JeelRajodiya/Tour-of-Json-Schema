@@ -179,6 +179,25 @@ async function hyperjumpValidate(data, schema){
 	const output = await validate("http://example.com/schemas/string", data);
 	// console.log(BASIC);
 	console.log(output);
+	// ----- Wrong type Error -----
+	// Does not throw an error, it just returns a valid false
+	// 	{
+	//   keyword: 'https://json-schema.org/evaluation/validate',
+	//   absoluteKeywordLocation: 'http://example.com/schemas/string#',
+	//   instanceLocation: '#',
+	//   valid: false,
+	//   errors: []
+	// }
+
+	// ---- Syntax Errors -----
+	// 	      throw new InvalidSchemaError(metaResults);
+	//             ^
+
+	// InvalidSchemaError: Invalid Schema
+	// other error is:
+	// Unable to determine a dialect for the schema. The dialect can be declared in a number of ways, but the recommended way is to use the '$schema' keyword in your schema.
+
+
 }
 
 const schema = {
@@ -198,6 +217,6 @@ const data = [1, 2, 3, 5]
 
 // djvValidate(data, schema)
 // jsenValidate(data, schema)
-isMyJsonValid(data, schema)
-// hyperjumpValidate(data, schema)
+// isMyJsonValid(data, schema)
+hyperjumpValidate(data, schema)
 
