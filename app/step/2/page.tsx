@@ -6,9 +6,60 @@ import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
 import { hyperjumpValidate, isMyJsonValid } from "@/lib/validators";
+async function handleValidation(
+    setValidity: any,
+    setIsInvalid: any,
+    code: string | undefined
+) {
+    try {
+        const schema = JSON.parse(code!);
 
-// const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
-// ajv.addMetaSchema(draft7MetaSchema);
+        const output = await hyperjumpValidate([1, 2, 3], schema);
+        const validation2 = isMyJsonValid([1, 2, 3], schema);
+
+        if (output?.valid) {
+            setValidity("Yes! This is a valid schema!");
+
+            setIsInvalid(false);
+        } else {
+            // console.log(output);
+            if (validation2.errors.length !== 0) {
+                let errorString = "";
+                for (const error of validation2.errors) {
+                    errorString += JSON.stringify(error) + "      ";
+                }
+                setValidity(errorString);
+                setIsInvalid(true);
+            }
+        }
+    } catch (e) {
+        setValidity((e as Error).message);
+
+        setIsInvalid(true);
+    }
+}
+function ValidateBtn({
+    code,
+    setValidity,
+    setIsInvalid,
+}: {
+    code: string;
+    setValidity: (value: string) => void;
+    setIsInvalid: (value: boolean) => void;
+}) {
+    return (
+        <Button
+            size={"sm"}
+            variant={"default"}
+            onClick={() => handleValidation(setValidity, setIsInvalid, code)}
+        >
+            {" "}
+            Validate{" "}
+        </Button>
+    );
+}
+
+
 export default function Home() {
     const { pageName, setPageName } = useContext(pageContext);
 
@@ -38,48 +89,11 @@ export default function Home() {
             }
             buttons={
                 <>
-                    <Button
-                        size={"sm"}
-                        variant={"default"}
-                        onClick={async () => {
-                            try {
-                                const schema = JSON.parse(code!);
-
-                                const output = await hyperjumpValidate(
-                                    [1, 2, 3],
-                                    schema
-                                );
-                                console.log(output);
-                                if (output.valid) {
-                                    setValidity("Yes! This is a valid schema!");
-
-                                    setIsInvalid(false);
-                                } else {
-                                    console.log(output);
-                                    const validation2 = isMyJsonValid(
-                                        [1, 2, 3],
-                                        schema
-                                    );
-                                    console.log(validation2);
-                                    let errorString = "";
-                                    for (const error of validation2) {
-                                        errorString +=
-                                            JSON.stringify(error) + "      ";
-                                    }
-
-                                    setValidity(errorString);
-
-                                    setIsInvalid(true);
-                                }
-                            } catch (e) {
-                                setValidity((e as Error).message);
-                                setIsInvalid(true);
-                            }
-                        }}
-                    >
-                        {" "}
-                        Validate{" "}
-                    </Button>
+                    <ValidateBtn
+                        code={code}
+                        setValidity={setValidity}
+                        setIsInvalid={setIsInvalid}
+                    />
 
                     <Button
                         variant={"success"}

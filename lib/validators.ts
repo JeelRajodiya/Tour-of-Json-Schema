@@ -70,9 +70,9 @@ import validator from "is-my-json-valid";
 export function isMyJsonValid(data: any, schema: any) {
     const validate = validator(schema);
 
-    console.log(validate(data, { verbose: true }));
+    const output = validate(data, { verbose: true });
 
-    return validate.errors;
+    return { valid: output, errors: validate.errors };
 }
 import {
     validate,
@@ -93,7 +93,6 @@ export async function hyperjumpValidate(data: any, schema: any) {
         );
         return output;
     } catch (e) {
-        throw e;
     } finally {
         unregisterSchema("http://example.com/schemas/string");
     }
