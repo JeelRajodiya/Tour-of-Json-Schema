@@ -19,3 +19,7 @@ I have tried several JSON schema validators and tested them for verbosity in err
 | [jsen](https://www.npmjs.com/package/jsen)                         | ❌ Silent    | ✅ Minimal     |
 | [is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid) | ✅ Standard  | ✅ Standard    |
 | [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)  | ✅ Standard  | ❌ Silent      |
+
+## Standared Compliance
+
+I tried searching the web for the standard compliance of the validators but could not find any latest information. The one I found was [this](https://github.com/ebdrup/json-schema-benchmark) which is 4 years old and does not include the latest 2020-12 drafts. So I have decided to consider hyperjump as the most compliant according to the [bowtie report](https://bowtie.report/#/?language=javascript&language=typescript)
