@@ -14,15 +14,15 @@ I have tried several JSON schema validators and tested them for verbosity in err
 
 | Validator                                                                    | Error Verbosity |
 | ---------------------------------------------------------------------------- | --------------- |
-| ~~[jsonschema](https://www.npmjs.com/package/jsonschema)~~                   | ✅ Verbose      |
-| ~~[tv4](https://www.npmjs.com/package/tv4)~~                                 | ✅ Minimal      |
-| ~~[djv](https://www.npmjs.com/package/djv)~~                                 | ✅ Minimal      |
-| ~~[jsen](https://www.npmjs.com/package/jsen)~~                               | ✅ Minimal      |
-| ~~[is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid)~~       | ✅ Standard     |
-| [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)            | ❌ Silent       |
-| [ajv](https://www.npmjs.com/package/ajv)                                     | ✅ Minimal      |
-| [schemasafe](https://www.npmjs.com/package/@exodus/schemasafe)               | ❌ Silent       |
-| [@cfworker/json-schema](https://www.npmjs.com/package/@cfworker/json-schema) | ✅ Standard     |
+| ~~[jsonschema](https://www.npmjs.com/package/jsonschema)~~                   | Verbose         |
+| ~~[tv4](https://www.npmjs.com/package/tv4)~~                                 | Minimal         |
+| ~~[djv](https://www.npmjs.com/package/djv)~~                                 | Minimal         |
+| ~~[jsen](https://www.npmjs.com/package/jsen)~~                               | Minimal         |
+| ~~[is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid)~~       | Standard        |
+| [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)            | Minimal         |
+| [ajv](https://www.npmjs.com/package/ajv)                                     | Minimal         |
+| [schemasafe](https://www.npmjs.com/package/@exodus/schemasafe)               | Minimal         |
+| [@cfworker/json-schema](https://www.npmjs.com/package/@cfworker/json-schema) | Standard        |
 
 **Note:** the striked out validators does not support latest draft 2020-12 as they are not maintained anymore.
 
