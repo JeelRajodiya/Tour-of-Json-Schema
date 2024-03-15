@@ -204,7 +204,7 @@ async function hyperjumpValidate(data, schema){
 import {validator as schemaSafeValidator} from '@exodus/schemasafe'
 
 function schemaSafe(data, schema){
-	const validate = schemaSafeValidator(schema,{includeErrors:true})
+	const validate = schemaSafeValidator(schema,{includeErrors:true,})
 	const valid = validate(data)
 	console.log(valid);
 	console.log(validate);
@@ -236,14 +236,12 @@ function cfworkerValidate(data, schema){
 const schema = {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	
-    "type": "array",
-    "items": {
-		"type": "string"
-    },
+    "type": "object",
+    
 }
 
 
-const data = [1, 2, 3, "s"]
+const data =[]
 
 // jsonschema(data, schema)
 // ajv(data, schema2)
@@ -253,7 +251,7 @@ const data = [1, 2, 3, "s"]
 // jsenValidate(data, schema)
 // isMyJsonValid(data, schema)
 
-// hyperjumpValidate(data, schema2)
-// schemaSafe(data, schema)
+// hyperjumpValidate(data, schema)
+schemaSafe(data, schema)
 // cfworkerValidate(data, schema)
 

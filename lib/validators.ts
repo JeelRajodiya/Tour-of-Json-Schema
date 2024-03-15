@@ -98,3 +98,17 @@ export async function hyperjumpValidate(data: any, schema: any) {
     }
     // console.log(BASIC);
 }
+import { Validator as cfValidator } from "@cfworker/json-schema";
+export function cfworkerValidate(data: any, schema: any) {
+    const validate = new cfValidator(schema, "2020-12", true);
+    const valid = validate.validate(data);
+    return valid;
+
+    // ---- Error on Wrong type -----
+    // 	    {
+    //       instanceLocation: '#/0',
+    //       keyword: 'type',
+    //       keywordLocation: '#/items/type',
+    //       error: 'Instance type "number" is invalid. Expected "string".'
+    //     }
+}

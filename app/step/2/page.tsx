@@ -5,7 +5,11 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
-import { hyperjumpValidate, isMyJsonValid } from "@/lib/validators";
+import {
+    cfworkerValidate,
+    hyperjumpValidate,
+    isMyJsonValid,
+} from "@/lib/validators";
 async function handleValidation(
     setValidity: any,
     setIsInvalid: any,
@@ -15,7 +19,7 @@ async function handleValidation(
         const schema = JSON.parse(code!);
 
         const output = await hyperjumpValidate([1, 2, 3], schema);
-        const validation2 = isMyJsonValid([1, 2, 3], schema);
+        const validation2 = cfworkerValidate([1, 2, 3], schema);
 
         if (output?.valid) {
             setValidity("Yes! This is a valid schema!");
@@ -26,7 +30,7 @@ async function handleValidation(
             if (validation2.errors.length !== 0) {
                 let errorString = "";
                 for (const error of validation2.errors) {
-                    errorString += JSON.stringify(error) + "      ";
+                    errorString += error.error + "     ";
                 }
                 setValidity(errorString);
                 setIsInvalid(true);
@@ -58,7 +62,6 @@ function ValidateBtn({
         </Button>
     );
 }
-
 
 export default function Home() {
     const { pageName, setPageName } = useContext(pageContext);
