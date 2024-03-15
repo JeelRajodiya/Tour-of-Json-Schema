@@ -81,8 +81,8 @@ import {
     unregisterSchema,
 } from "@hyperjump/json-schema/draft-2020-12";
 // import {BASIC} from "@hyperjump/json-schema/experimental"
-import { BASIC } from "@hyperjump/json-schema/experimental";
-setMetaSchemaOutputFormat(BASIC);
+import { VERBOSE, BASIC, DETAILED } from "@hyperjump/json-schema/experimental";
+setMetaSchemaOutputFormat(VERBOSE);
 
 export async function hyperjumpValidate(data: any, schema: any) {
     registerSchema(schema, "http://example.com/schemas/string");
@@ -93,6 +93,7 @@ export async function hyperjumpValidate(data: any, schema: any) {
         );
         return output;
     } catch (e) {
+        throw e;
     } finally {
         unregisterSchema("http://example.com/schemas/string");
     }

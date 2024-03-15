@@ -27,17 +27,19 @@ async function handleValidation(
             setIsInvalid(false);
         } else {
             // console.log(output);
-            if (validation2.errors.length !== 0) {
+            if (validation2?.errors?.length !== 0) {
                 let errorString = "";
-                for (const error of validation2.errors) {
+                for (const error of validation2?.errors) {
                     errorString += error.error + "     ";
                 }
                 setValidity(errorString);
+                console.log(validation2.errors);
                 setIsInvalid(true);
             }
         }
     } catch (e) {
-        setValidity((e as Error).message);
+        setValidity(JSON.stringify(e));
+        console.log(e);
 
         setIsInvalid(true);
     }
