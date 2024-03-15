@@ -1,6 +1,7 @@
 I have tried several JSON schema validators and tested them for verbosity in errors both syntex and mis-match in the schema and data
 
 > View [this file](https://github.com/JeelRajodiya/Tour-of-Json-Schema/blob/main/validatorTest.mjs) to see the testing code
+
 ## Error Verbosity
 
 **Silent**: No error messages are displayed.
@@ -11,15 +12,19 @@ I have tried several JSON schema validators and tested them for verbosity in err
 
 **Verbose**: Offers detailed error messages with additional context, such as stack traces or relevant variable values, to aid in troubleshooting.
 
-| Validator                                                          | Syntax Error | Mismatch Error |
-| ------------------------------------------------------------------ | ------------ | -------------- |
-| [jsonschema](https://www.npmjs.com/package/jsonschema)             | ❌ Silent    | ✅ Verbose     |
-| [ajv](https://www.npmjs.com/package/ajv)                           | ✅ Standard  | ✅ Minimal     |
-| [tv4](https://www.npmjs.com/package/tv4)                           | ❌ Silent    | ✅ Minimal     |
-| [djv](https://www.npmjs.com/package/djv)                           | ❌ Silent    | ✅ Minimal     |
-| [jsen](https://www.npmjs.com/package/jsen)                         | ❌ Silent    | ✅ Minimal     |
-| [is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid) | ✅ Standard  | ✅ Standard    |
-| [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)  | ❌ Silent    | ❌ Silent      |
+| Validator                                                                    | Syntax Error | Mismatch Error |
+| ---------------------------------------------------------------------------- | ------------ | -------------- |
+| ~~[jsonschema](https://www.npmjs.com/package/jsonschema)~~                   | ❌ Silent    | ✅ Verbose     |
+| ~~[ajv](https://www.npmjs.com/package/ajv)~~                                 | ✅ Standard  | ✅ Minimal     |
+| ~~[tv4](https://www.npmjs.com/package/tv4)~~                                 | ❌ Silent    | ✅ Minimal     |
+| ~~[djv](https://www.npmjs.com/package/djv)~~                                 | ❌ Silent    | ✅ Minimal     |
+| ~~[jsen](https://www.npmjs.com/package/jsen)~~                               | ❌ Silent    | ✅ Minimal     |
+| ~~[is-my-json-valid](https://www.npmjs.com/package/is-my-json-valid)~~       | ✅ Standard  | ✅ Standard    |
+| [hyperjump](https://www.npmjs.com/package/@hyperjump/json-schema)            | ❌ Silent    | ❌ Silent      |
+| [schemasafe](https://www.npmjs.com/package/@exodus/schemasafe)               | ✅ Standard  | ❌ Silent      |
+| [@cfworker/json-schema](https://www.npmjs.com/package/@cfworker/json-schema) | ❌ Silent    | ✅ Standard    |
+
+**Note:** the striked out validators does not support latest draft 2020-12 as they are not maintained anymore.
 
 ## Standared Compliance
 

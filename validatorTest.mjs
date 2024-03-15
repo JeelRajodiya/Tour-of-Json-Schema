@@ -200,6 +200,39 @@ async function hyperjumpValidate(data, schema){
 
 }
 
+// ----------------------------------------------
+import {validator as schemaSafeValidator} from '@exodus/schemasafe'
+
+function schemaSafe(data, schema){
+	const validate = schemaSafeValidator(schema,{includeErrors:true})
+	const valid = validate(data)
+	console.log(valid);
+	console.log(validate);
+	// ---- Error on Wrong type -----
+	//  errors: [ { keywordLocation: '#/items/type', instanceLocation: '#/0' } ],
+
+	// ----- Syntax Error -----
+	//       throw new Error(message)
+            // ^
+
+	// Error: Unknown type: "streing" at #/items
+}
+import { Validator as cfValidator } from '@cfworker/json-schema';
+function cfworkerValidate(data, schema){
+	const validate = new cfValidator(schema,"2020-12",true)
+	const valid = validate.validate(data)
+	console.log(valid);
+
+	// ---- Error on Wrong type -----
+	// 	    {
+	//       instanceLocation: '#/0',
+	//       keyword: 'type',
+	//       keywordLocation: '#/items/type',
+	//       error: 'Instance type "number" is invalid. Expected "string".'
+	//     }
+	
+	
+}
 const schema = {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	
@@ -210,8 +243,8 @@ const schema = {
 }
 
 
-const data = [1, 2, 3, 5]
-const schema2 = JSON.stringify(schema)+ "adf"
+const data = [1, 2, 3, "s"]
+
 // jsonschema(data, schema)
 // ajv(data, schema2)
 // tv4Validate(data, schema)
@@ -219,6 +252,8 @@ const schema2 = JSON.stringify(schema)+ "adf"
 // djvValidate(data, schema)
 // jsenValidate(data, schema)
 // isMyJsonValid(data, schema)
-JSON.parse(schema2)
-hyperjumpValidate(data, schema2)
+
+// hyperjumpValidate(data, schema2)
+// schemaSafe(data, schema)
+// cfworkerValidate(data, schema)
 
