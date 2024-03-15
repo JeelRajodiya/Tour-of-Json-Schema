@@ -89,7 +89,8 @@ export async function hyperjumpValidate(data: any, schema: any) {
     try {
         const output = await validate(
             "http://example.com/schemas/string",
-            data
+            data,
+            VERBOSE
         );
         return output;
     } catch (e) {
