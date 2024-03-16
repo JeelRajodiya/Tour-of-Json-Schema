@@ -18,30 +18,21 @@ async function handleValidation(
 ) {
     try {
         const schema = JSON.parse(code!);
+        const data = [1, 2, 3];
+        const output = await hyperjumpValidate(data, schema);
 
-        const output = await hyperjumpValidate([1, 2, 3], schema);
-        const validation2 = cfworkerValidate([1, 2, 3], schema);
-        const avjErrors = ajv([1, 2, 3], schema).errors;
+        const avjErrors = ajv(data, schema).errors;
         if (output?.valid) {
-            setValidity("Yes! This is a valid schema!");
+            setValidity("Correct! Let's move on to the next step.");
 
             setIsInvalid(false);
         } else {
-            // console.log(output);
-            if (validation2?.errors?.length !== 0) {
-                let errorString = "";
-                for (const error of validation2?.errors) {
-                    errorString += error.error + "     ";
-                }
-                setValidity(avjErrors);
-                console.log(validation2.errors);
-                setIsInvalid(true);
-            }
+            setValidity(avjErrors);
+
+            setIsInvalid(true);
         }
     } catch (e) {
-        setValidity(JSON.stringify(e.message));
-        console.log(e);
-
+        setValidity(JSON.stringify((e as Error).message));
         setIsInvalid(true);
     }
 }
