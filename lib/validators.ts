@@ -19,12 +19,15 @@ export function jsonschema(data: any, schema: any) {
 }
 
 import Ajv from "ajv/dist/2020.js";
+// @ts-ignore
+import betterAjvErrors from "better-ajv-errors";
 export function ajv(data: any, schema: any) {
-    const ajv = new Ajv({ allErrors: true }); // options can be passed, e.g. {allErrors: true}
+    const ajv = new Ajv({ allErrors: true, verbose: true }); // options can be passed, e.g. {allErrors: true}
 
     const validate = ajv.compile(schema);
     const valid = validate(data);
-    if (!valid) console.log(validate.errors);
+    const errors = betterAjvErrors(schema, data, validate.errors);
+    return { valid, errors };
 
     //   {
     //     instancePath: '/1',

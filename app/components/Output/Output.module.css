@@ -5,6 +5,8 @@
     border-radius: 16px;
     display: flex;
     padding: 16px;
+    white-space: pre;
+    overflow-y: scroll;
     /* align-items: center; */
 
     /* justify-content: center; */

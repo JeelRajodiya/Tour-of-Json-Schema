@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout/page";
 import {
+    ajv,
     cfworkerValidate,
     hyperjumpValidate,
     isMyJsonValid,
@@ -20,7 +21,7 @@ async function handleValidation(
 
         const output = await hyperjumpValidate([1, 2, 3], schema);
         const validation2 = cfworkerValidate([1, 2, 3], schema);
-
+        const avjErrors = ajv([1, 2, 3], schema).errors;
         if (output?.valid) {
             setValidity("Yes! This is a valid schema!");
 
@@ -32,13 +33,13 @@ async function handleValidation(
                 for (const error of validation2?.errors) {
                     errorString += error.error + "     ";
                 }
-                setValidity(errorString);
+                setValidity(avjErrors);
                 console.log(validation2.errors);
                 setIsInvalid(true);
             }
         }
     } catch (e) {
-        setValidity(JSON.stringify(e));
+        setValidity(JSON.stringify(e.message));
         console.log(e);
 
         setIsInvalid(true);
