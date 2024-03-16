@@ -79,11 +79,63 @@ import {
     registerSchema,
     setMetaSchemaOutputFormat,
     unregisterSchema,
+    OutputUnit,
 } from "@hyperjump/json-schema/draft-2020-12";
 // import {BASIC} from "@hyperjump/json-schema/experimental"
 import { VERBOSE, BASIC, DETAILED } from "@hyperjump/json-schema/experimental";
+import * as Instance from "@hyperjump/json-schema/instance/experimental";
+// @ts-ignore
+import * as Schema from "@hyperjump/json-schema/schema/experimental";
 setMetaSchemaOutputFormat(VERBOSE);
+const getErrorMessage = async (outputUnit: OutputUnit, instance: any) => {
+    if (outputUnit.keyword === "https://json-schema.org/keyword/required") {
+        const schemaDocument = await Schema.get(
+            outputUnit.absoluteKeywordLocation
+        );
+        const required = new Set(Schema.value(schemaDocument));
+        const object = Instance.get(outputUnit.instanceLocation, instance);
+        // @ts-ignore
 
+        for (const propertyName of Instance.keys(object)) {
+            required.delete(propertyName);
+        }
+
+        return `"${
+            outputUnit.instanceLocation
+        }" is missing required property(s): ${[
+            // @ts-ignore
+            ...required,
+        ]}. Schema location: ${outputUnit.absoluteKeywordLocation}`;
+    } else {
+        // Default message
+        return `"${outputUnit.instanceLocation}" fails schema constraint ${outputUnit.absoluteKeywordLocation}`;
+    }
+};
+
+// These are probably not very useful for human readable messaging, so we'll skip them.
+const skip = new Set([
+    "https://json-schema.org/evaluation/validate",
+    "https://json-schema.org/keyword/ref",
+    "https://json-schema.org/keyword/properties",
+    "https://json-schema.org/keyword/patternProperties",
+    "https://json-schema.org/keyword/items",
+    "https://json-schema.org/keyword/prefixItems",
+    "https://json-schema.org/keyword/if",
+    "https://json-schema.org/keyword/then",
+    "https://json-schema.org/keyword/else",
+]);
+export const getHumanErrors = (output: any, value: any) => {
+    if (output.valid) {
+        return "Valid";
+    }
+
+    const instance = Instance.cons(value);
+    const errorMessages = output.errors
+        .filter((outputUnit: any) => !skip.has(outputUnit.keyword))
+        .map((outputUnit: any) => getErrorMessage(outputUnit, instance));
+
+    return Promise.all(errorMessages);
+};
 export async function hyperjumpValidate(data: any, schema: any) {
     registerSchema(schema, "http://example.com/schemas/string");
     try {
@@ -91,7 +143,11 @@ export async function hyperjumpValidate(data: any, schema: any) {
             "http://example.com/schemas/string",
             data
         );
-        return output;
+        const myOutput = {
+            ...output,
+            errors: await getHumanErrors(output, data),
+        };
+        return myOutput;
     } catch (e) {
         throw e;
     } finally {
