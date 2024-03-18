@@ -96,7 +96,7 @@ export async function hyperjumpValidate(data: any, schema: any) {
         );
         return output;
     } catch (e) {
-        // throw e;
+        throw e;
     } finally {
         unregisterSchema("http://example.com/schemas/string");
     }

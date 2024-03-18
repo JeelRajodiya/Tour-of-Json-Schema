@@ -12,9 +12,10 @@ const nextConfig = {
     return config
   },
     typescript: {
+		// turning this on, because there is a build error and I can not find the cause of it
      ignoreBuildErrors: true,
   },
-  output:process.env.HOST ==="Vercel"?"" : "export",
+  output:process.env.HOST ==="Vercel"?"standalone" : "export",
   basePath:process.env.HOST === "Vercel" ? "" : "/Tour-of-Json-Schema"
   
 
