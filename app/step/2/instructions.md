@@ -5,7 +5,7 @@ In this section, we'll create a simple schema for array of numbers
 Example data
 
 ```json
-[1, 2, 3, 5]
+[1, 2, 3]
 ```
 
 ## You can define it's schema in the following manner

@@ -23,7 +23,7 @@ async function handleValidation(
 
         const avjErrors = ajv(data, schema).errors;
         if (output?.valid) {
-            setValidity("Correct! Let's move on to the next step.");
+            setValidity("Congratulations! You have finished the tour!");
 
             setIsInvalid(false);
         } else {
@@ -76,14 +76,10 @@ export default function Home() {
             InstructionsMarkdown={InstructionsMarkdown}
             code={code}
             setCode={setCode}
-            output={
-                <div
-                    className={styles.validity}
-                    style={{ color: isInvalid ? "red" : "green" }}
-                >
-                    {validity}
-                </div>
-            }
+            output={{
+                isInvalid,
+                message: validity,
+            }}
             buttons={
                 <>
                     <ValidateBtn
