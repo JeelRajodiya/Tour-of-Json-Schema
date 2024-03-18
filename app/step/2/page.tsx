@@ -38,7 +38,7 @@ async function handleValidation(
             }
         }
     } catch (e) {
-        setValidity(JSON.stringify(e.message));
+        setValidity(JSON.stringify((e as Error).message));
         console.log(e);
 
         setIsInvalid(true);
