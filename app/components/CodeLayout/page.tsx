@@ -14,7 +14,10 @@ function CodeLayout({
     InstructionsMarkdown: string;
     code: string;
     setCode: React.Dispatch<React.SetStateAction<string>>;
-    output: React.ReactNode;
+    output: {
+        isInvalid: boolean;
+        message: string | undefined;
+    };
     buttons: React.ReactNode;
 }) {
     return (
@@ -22,7 +25,7 @@ function CodeLayout({
             <Instructions markdownInstructions={InstructionsMarkdown!} />
             <div className={styles.editorNOutput}>
                 <CodeEditor code={code} setCode={setCode} buttons={buttons} />
-                <Output>{output}</Output>
+                <Output isInvalid={output.isInvalid}>{output.message}</Output>
             </div>
         </div>
     );

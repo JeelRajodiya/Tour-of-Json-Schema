@@ -31,14 +31,10 @@ export default function Home() {
             InstructionsMarkdown={InstructionsMarkdown}
             code={code}
             setCode={setCode}
-            output={
-                <div
-                    className={styles.validity}
-                    style={{ color: isInvalid ? "red" : "green" }}
-                >
-                    {validity}
-                </div>
-            }
+            output={{
+                isInvalid,
+                message: validity,
+            }}
             buttons={
                 <>
                     <Button
