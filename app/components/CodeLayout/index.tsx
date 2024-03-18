@@ -16,7 +16,7 @@ function CodeLayout({
     setCode: React.Dispatch<React.SetStateAction<string>>;
     output: {
         isInvalid: boolean;
-        message: string | undefined;
+        message: string;
     };
     buttons: React.ReactNode;
 }) {

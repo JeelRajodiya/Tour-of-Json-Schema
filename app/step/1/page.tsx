@@ -6,7 +6,7 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
-import CodeLayout from "@/app/components/CodeLayout/page";
+import CodeLayout from "@/app/components/CodeLayout";
 import { hyperjumpValidate } from "@/lib/validators";
 
 // const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
@@ -18,7 +18,7 @@ export default function Home() {
     const [code, setCode] = useState<string>("{}");
     const [InstructionsMarkdown, setInstructionsMarkdown] =
         useState<string>("");
-    const [validity, setValidity] = useState<string | undefined>("");
+    const [validity, setValidity] = useState<string>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
 
     useEffect(() => {

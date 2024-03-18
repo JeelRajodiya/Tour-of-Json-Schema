@@ -4,7 +4,7 @@ import styles from "./2.module.css";
 import { Box, Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
-import CodeLayout from "@/app/components/CodeLayout/page";
+import CodeLayout from "@/app/components/CodeLayout";
 import {
     ajv,
     cfworkerValidate,
@@ -64,7 +64,7 @@ export default function Home() {
     const [code, setCode] = useState<string>("{}");
     const [InstructionsMarkdown, setInstructionsMarkdown] =
         useState<string>("");
-    const [validity, setValidity] = useState<string | undefined>("");
+    const [validity, setValidity] = useState<string>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
     useEffect(() => {
         const textFile = require("./instructions.md");
