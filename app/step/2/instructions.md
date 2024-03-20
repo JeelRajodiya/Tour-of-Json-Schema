@@ -1,4 +1,4 @@
-# Creating A Simple Schema
+# Array of Numbers
 
 In this section, we'll create a simple schema for array of numbers
 
