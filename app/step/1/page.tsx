@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
 import { ajv, hyperjumpValidate } from "@/lib/validators";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 async function handleValidation(
     setValidity: any,
@@ -79,6 +80,7 @@ export default function Home() {
                         variant={"success"}
                         isDisabled={isInvalid}
                         onClick={() => router.push("/step/2")}
+                        rightIcon={<ChevronRightIcon />}
                     >
                         Next
                     </Button>
