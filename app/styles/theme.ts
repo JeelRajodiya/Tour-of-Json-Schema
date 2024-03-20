@@ -1,10 +1,9 @@
 "use client";
 import {
-    background,
     theme as chakraTheme,
     extendTheme,
 } from "@chakra-ui/react";
-import { color } from "framer-motion";
+
 const Button = {
     variants: {
         default: {

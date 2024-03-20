@@ -7,10 +7,36 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
-import { hyperjumpValidate } from "@/lib/validators";
+import { ajv, hyperjumpValidate } from "@/lib/validators";
 
-// const draft7MetaSchema = require("ajv/dist/refs/json-schema-draft-07.json");
-// ajv.addMetaSchema(draft7MetaSchema);
+async function handleValidation(
+    setValidity: any,
+    setIsInvalid: any,
+    code: string | undefined
+) {
+    try {
+        const schema = JSON.parse(code!);
+        const data1 = {};
+        const data2: any[] = [];
+        const output1 = await hyperjumpValidate(data1, schema);
+        const output2 = await hyperjumpValidate(data2, schema);
+
+        const avjErrors = ajv(data1, schema).errors;
+        if (output1?.valid || output2?.valid) {
+            setValidity("Correct! let's move on to the next step.");
+
+            setIsInvalid(false);
+        } else {
+            setValidity(avjErrors);
+
+            setIsInvalid(true);
+        }
+    } catch (e) {
+        setValidity(JSON.stringify((e as Error).message));
+        setIsInvalid(true);
+    }
+}
+
 export default function Home() {
     const { pageName, setPageName } = useContext(pageContext);
 
@@ -40,29 +66,9 @@ export default function Home() {
                     <Button
                         size={"sm"}
                         variant={"default"}
-                        onClick={async () => {
-                            try {
-                                const schema = JSON.parse(code!);
-
-                                const valid = await hyperjumpValidate(
-                                    [],
-                                    schema
-                                );
-                                console.log(valid);
-                                if (valid) {
-                                    setValidity("Yes! This is a valid schema!");
-
-                                    setIsInvalid(false);
-                                } else {
-                                    setValidity("Invalid schema provided!");
-                                    setIsInvalid(true);
-                                }
-                            } catch (e) {
-                                setValidity((e as Error).message);
-
-                                setIsInvalid(true);
-                            }
-                        }}
+                        onClick={() =>
+                            handleValidation(setValidity, setIsInvalid, code)
+                        }
                     >
                         {" "}
                         Validate{" "}
