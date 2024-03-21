@@ -24,6 +24,13 @@ export default function Home() {
                         <div>Schema</div>
                     </div>
                 </div>
+                {/* <img
+                    src="./icons/example.png"
+                    alt="example"
+                    style={{
+                        height: 256,
+                    }}
+                /> */}
                 <div className={styles.subtitleWrapper}>
                     <div className={styles.subtitle}>
                         Learn JSON Schema by examples.
