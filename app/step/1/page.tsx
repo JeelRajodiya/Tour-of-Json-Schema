@@ -80,9 +80,9 @@ export default function Home() {
                         variant={"success"}
                         isDisabled={isInvalid}
                         onClick={() => router.push("/step/2")}
-                        rightIcon={<ChevronRightIcon />}
+                        rightIcon={<ChevronRightIcon w={6} h={6} />}
                     >
-                        Next
+                        Step 2
                     </Button>
                 </>
             }

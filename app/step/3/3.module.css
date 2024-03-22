@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10em;
+}
+
+.nextBtn {
+    position: fixed !important;
+
+    right: 32px;
+    bottom: 32px;
+}

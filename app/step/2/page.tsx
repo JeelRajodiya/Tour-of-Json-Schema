@@ -11,6 +11,7 @@ import {
     hyperjumpValidate,
     isMyJsonValid,
 } from "@/lib/validators";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 async function handleValidation(
     setValidity: any,
     setIsInvalid: any,
@@ -23,7 +24,9 @@ async function handleValidation(
 
         const avjErrors = ajv(data, schema).errors;
         if (output?.valid) {
-            setValidity("Congratulations! You have finished the tour!");
+            setValidity(
+                "Great!\nLet's learn about $schema and specifications in the next step."
+            );
 
             setIsInvalid(false);
         } else {
@@ -91,10 +94,11 @@ export default function Home() {
                     <Button
                         variant={"success"}
                         isDisabled={isInvalid}
-                        onClick={() => router.push("/")}
+                        onClick={() => router.push("/step/3")}
                         size={"sm"}
+                        rightIcon={<ChevronRightIcon w={6} h={6} />}
                     >
-                        Home
+                        Step 3
                     </Button>
                 </>
             }
