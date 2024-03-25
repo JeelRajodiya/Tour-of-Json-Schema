@@ -9,14 +9,16 @@ function Instructions({
 }) {
     return (
         <div className={styles.main} data-color-mode="light">
-            <MarkdownPreview
-                source={markdownInstructions}
-                style={{
-                    backgroundColor: "transparent",
-                    color: "black",
-                    height: "100%",
-                }}
-            />
+            <div>
+                <MarkdownPreview
+                    source={markdownInstructions}
+                    style={{
+                        backgroundColor: "transparent",
+                        color: "black",
+                        height: "100%",
+                    }}
+                />
+            </div>
         </div>
     );
 }

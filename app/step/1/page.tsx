@@ -42,7 +42,9 @@ export default function Home() {
     const { pageName, setPageName } = useContext(pageContext);
 
     const router = useRouter();
-    const [code, setCode] = useState<string>("{}");
+    const [code, setCode] = useState<string>(
+        `{\n    "$schema": "https://json-schema.org/draft/2020-12/schema",\n    \n}`
+    );
     const [InstructionsMarkdown, setInstructionsMarkdown] =
         useState<string>("");
     const [validity, setValidity] = useState<string>("");
