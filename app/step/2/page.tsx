@@ -1,16 +1,11 @@
 "use client";
 import { useContext, useEffect, useMemo, useState } from "react";
-import styles from "./2.module.css";
-import { Box, Button, Flex } from "@chakra-ui/react";
+// import styles from "./2.module.css";
+import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
-import {
-    ajv,
-    cfworkerValidate,
-    hyperjumpValidate,
-    isMyJsonValid,
-} from "@/lib/validators";
+import { ajv, hyperjumpValidate } from "@/lib/validators";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 async function handleValidation(
     setValidity: any,
