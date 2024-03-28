@@ -51,6 +51,17 @@ export default function Home() {
         const textFile = require("./instructions.md");
         setInstructionsMarkdown(textFile);
         setPageName("Step 1: Writing a valid schema");
+        function handleKeyDown(event: KeyboardEvent) {
+            if (event.ctrlKey && event.key === "Enter") {
+                event.preventDefault(); // Prevent default behavior
+                handleValidation(setValidity, setIsInvalid, code);
+            }
+        }
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
     }, []);
     return (
         <CodeLayout
