@@ -16,14 +16,14 @@ function Output({
     if (isChildrenEmpty) {
         textColor = "neutral";
     } else {
-        textColor = isInvalid ? "valid" : "invalid";
+        textColor = isInvalid ? "invalid" : "valid";
     }
-
+    console.log(textColor);
     return (
         <div className={classnames(styles.output, styles[textColor])}>
             {isChildrenEmpty && (
                 <KeyBindings
-                    keys={["ctrl", "enter"]}
+                    keys={["ctrl"]}
                     beforeText="Press "
                     afterText=" to validate"
                 />

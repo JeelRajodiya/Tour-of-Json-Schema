@@ -6,6 +6,7 @@ import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
 import { ajv, hyperjumpValidate } from "@/lib/validators";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useInstructionsEffect } from "@/lib/hooks";
 
 async function handleValidation(
     setValidity: any,
@@ -36,8 +37,6 @@ async function handleValidation(
 }
 
 export default function Home() {
-    const { pageName, setPageName } = useContext(pageContext);
-
     const router = useRouter();
     const [code, setCode] = useState<string>(
         `{\n    "$schema": "https://json-schema.org/draft/2020-12/schema"\n}`
@@ -47,22 +46,16 @@ export default function Home() {
     const [validity, setValidity] = useState<string>("");
     const [isInvalid, setIsInvalid] = useState<boolean>(true);
 
-    useEffect(() => {
-        const textFile = require("./instructions.md");
-        setInstructionsMarkdown(textFile);
-        setPageName("Step 1: Writing a valid schema");
-        function handleKeyDown(event: KeyboardEvent) {
-            if (event.ctrlKey && event.key === "Enter") {
-                event.preventDefault(); // Prevent default behavior
-                handleValidation(setValidity, setIsInvalid, code);
-            }
-        }
-        document.addEventListener("keydown", handleKeyDown);
+    useInstructionsEffect(
+        "/instructions.md",
+        "Step 1 Instructions",
+        code,
+        handleValidation,
+        setInstructionsMarkdown,
+        setIsInvalid,
+        setValidity
+    );
 
-        return () => {
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, []);
     return (
         <CodeLayout
             InstructionsMarkdown={InstructionsMarkdown}
