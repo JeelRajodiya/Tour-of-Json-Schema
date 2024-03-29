@@ -12,7 +12,7 @@ function Output({
     return (
         <div className={classnames(styles.output)}>
             <div className={styles.header}>
-                <div className={styles.title}>Validation Output</div>
+                <div className={styles.title}>Output</div>
             </div>
             <div
                 className={classnames(

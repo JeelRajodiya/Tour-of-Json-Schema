@@ -6,5 +6,9 @@
     border: 1px solid rgba(152, 152, 152, 0.668);
 
     padding: 16px;
+    overflow-y: hidden;
+}
+.wrapper {
+    height: 100%;
     overflow-y: scroll;
 }

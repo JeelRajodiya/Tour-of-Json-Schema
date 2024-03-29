@@ -9,7 +9,7 @@ function Instructions({
 }) {
     return (
         <div className={styles.main} data-color-mode="light">
-            <div>
+            <div className={styles.wrapper}>
                 <MarkdownPreview
                     source={markdownInstructions}
                     style={{
