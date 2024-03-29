@@ -1,14 +1,16 @@
 .main {
-    flex: 3;
+    flex: 4;
     height: 100%;
     background-color: rgb(241, 241, 241);
     border-radius: 32px;
     border: 1px solid rgba(152, 152, 152, 0.668);
 
     padding: 16px;
+    padding-right: 0;
     overflow-y: hidden;
 }
 .wrapper {
     height: 100%;
     overflow-y: scroll;
+    padding-right: 16px;
 }
