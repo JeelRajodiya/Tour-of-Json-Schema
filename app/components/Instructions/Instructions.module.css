@@ -3,7 +3,8 @@
     height: 100%;
     background-color: rgb(241, 241, 241);
     border-radius: 32px;
-    border: 1px dashed black;
+    border: 1px solid rgba(152, 152, 152, 0.668);
+
     padding: 16px;
     overflow-y: scroll;
 }

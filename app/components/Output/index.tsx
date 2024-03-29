@@ -10,13 +10,18 @@ function Output({
     isInvalid: boolean;
 }) {
     return (
-        <div
-            className={classnames(
-                styles.output,
-                isInvalid ? styles.invalid : styles.valid
-            )}
-        >
-            {children?.toString().replaceAll('"', "")}
+        <div className={classnames(styles.output)}>
+            <div className={styles.header}>
+                <div className={styles.title}>Validation Output</div>
+            </div>
+            <div
+                className={classnames(
+                    isInvalid ? styles.invalid : styles.valid,
+                    styles.outputBody
+                )}
+            >
+                {children?.toString().replaceAll('"', "")}
+            </div>
         </div>
     );
 }
