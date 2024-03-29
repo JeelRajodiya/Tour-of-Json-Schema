@@ -13,8 +13,19 @@ async function handleValidation(
     code: string | undefined
 ) {
     try {
-        const schema = JSON.parse(code!);
         const data = [1, 2, 3];
+        const schema = JSON.parse(code!);
+        if (!schema.type) {
+            setIsInvalid(true);
+            setValidity(
+                "Please specify the type of the data with the 'type' property."
+            );
+            return;
+        } else if (!schema.items) {
+            setIsInvalid(true);
+            setValidity("The schema should have an 'items' property.");
+            return;
+        }
         const output = await hyperjumpValidate(data, schema);
 
         const avjErrors = ajv(data, schema).errors;

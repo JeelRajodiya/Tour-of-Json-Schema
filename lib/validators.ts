@@ -84,7 +84,8 @@ import {
     unregisterSchema,
 } from "@hyperjump/json-schema/draft-2020-12";
 // import {BASIC} from "@hyperjump/json-schema/experimental"
-import { VERBOSE, BASIC, DETAILED } from "@hyperjump/json-schema/experimental";
+import { VERBOSE } from "@hyperjump/json-schema/experimental";
+
 setMetaSchemaOutputFormat(VERBOSE);
 
 export async function hyperjumpValidate(data: any, schema: any) {
