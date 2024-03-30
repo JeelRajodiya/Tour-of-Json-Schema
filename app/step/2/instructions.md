@@ -10,9 +10,7 @@ Example data
 
 ## Defining Schema
 
-In JSON Schema, we use the `type` keyword to describe what kind of data each item in an array should be.
-
-If we want our array to contain only numbers, we simply specify `number` as the type for each item through `items` field. This helps us make sure that our array is made up of numbers and nothing else.
+In JSON Schema, we use the `type` keyword to describe the type of data we expect. In this case, we want an array of numbers. We can specify this by setting the `type` to `array` and defining the type of items in the array using the `items` keyword.
 
 ```json
 {
