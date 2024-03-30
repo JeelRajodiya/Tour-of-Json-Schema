@@ -23,7 +23,10 @@ async function handleValidation(
             setValidity(
                 "Great!\nLet's learn about $schema and specifications in the next step."
             );
-            // This can be avoided, if I use JSON Schema to validate the (user provided) schema itself.
+
+            // Manual checking of types and items properties can be avoided,
+            // if we use validation Schema to validate the (user provided) schema itself.
+
             if (!schema.type) {
                 setIsInvalid(true);
                 setValidity(

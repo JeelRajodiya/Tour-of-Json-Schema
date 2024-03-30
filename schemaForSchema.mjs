@@ -1,3 +1,5 @@
+// This File demonstrates how we can validate a user-provided schema against validation schema using AJV to throw meaningful errors .
+
 
 import Ajv from "ajv/dist/2020.js";
 // @ts-ignore
@@ -40,6 +42,7 @@ const validationSchema = {
 };
 
 const data = [1, 2, 3];
+
 // userProvidedSchema will be entered by user in the editor
 const userProvidedSchema = {
     $schema: "https://json-schema.org/draft/2020-12/schema",
