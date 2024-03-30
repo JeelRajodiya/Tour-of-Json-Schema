@@ -43,11 +43,9 @@ const data = [1, 2, 3];
 // this will be entered by user in the editor
 const userProvidedSchema = {
     $schema: "https://json-schema.org/draft/2020-12/schema",
-	"type":"object",
-	"items":{
-		"type":"number"
+	type: "array",
+	items: {}
 	
-	}
 };
 
 console.log(ajv(userProvidedSchema, validationSchema).errors);
