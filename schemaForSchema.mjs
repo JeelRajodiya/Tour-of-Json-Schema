@@ -12,15 +12,7 @@ export function ajv(data, schema) {
 
 }
 
-const data = [1, 2, 3];
-const userProvidedSchema = {
-    $schema: "https://json-schema.org/draft/2020-12/schema",
-	"type":"object",
-	"items":{
-		"type":"string"
-	
-	}
-};
+
 const validationSchema = {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
@@ -47,5 +39,15 @@ const validationSchema = {
   "additionalProperties": false
 };
 
+const data = [1, 2, 3];
+// this will be entered by user in the editor
+const userProvidedSchema = {
+    $schema: "https://json-schema.org/draft/2020-12/schema",
+	"type":"object",
+	"items":{
+		"type":"number"
+	
+	}
+};
 
 console.log(ajv(userProvidedSchema, validationSchema).errors);
