@@ -12,22 +12,24 @@ We'll write JSON schema (Draft 2020-12) for any JSON data and check if it's vali
 
 ## Example
 
+### Schema (Rules that JSON data should follow)
+
 ```json
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/product.schema.json",
-    "title": "Product",
-    "description": "A product in the catalog",
-    "type": "object"
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        }
+    }
 }
 ```
 
-### The following json data is valid against the above schema
+### JSON Data
 
 ```json
 {
-    "title": "A product",
-    "description": "A product in the catalog",
-    "type": "object"
+    "name": "John"
 }
 ```
