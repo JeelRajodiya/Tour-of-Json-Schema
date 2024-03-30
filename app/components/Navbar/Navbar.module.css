@@ -22,3 +22,16 @@
     align-items: center;
     gap: 1rem;
 }
+.backButton {
+    padding: 8px;
+    cursor: pointer;
+    width: max-content;
+    background-color: rgba(255, 255, 255, 0.777);
+    border-radius: 8px;
+    border: 1px solid rgba(121, 121, 121, 0.667);
+}
+
+.backButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.667);
+}
