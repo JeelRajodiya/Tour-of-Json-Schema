@@ -22,7 +22,12 @@ function Output({
         <div className={classnames(styles.output, styles[textColor])}>
             <div className={styles.header}>
                 <div className={styles.title}>Output </div>
-                <div className={styles.keyBindingsWrapper}>
+                <div
+                    className={styles.keyBindingsWrapper}
+                    style={{
+                        opacity: isChildrenEmpty ? 1 : 0.8,
+                    }}
+                >
                     <KeyBindings
                         keys={["Ctrl", "."]}
                         beforeText="Press "
