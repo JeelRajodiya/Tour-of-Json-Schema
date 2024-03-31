@@ -1,9 +1,10 @@
-// This File demonstrates how we can validate a user-provided schema against validation schema using AJV to throw meaningful errors .
-
+// This File demonstrates how we can validate a user-provided schema against 
+// validation schema and get meaningful errors using better-ajv-errors
 
 import Ajv from "ajv/dist/2020.js";
-// @ts-ignore
 import betterAjvErrors from "better-ajv-errors";
+
+// Function to validate data against schema 
 export function ajv(data, schema) {
     const ajv = new Ajv({ allErrors: true, verbose: true }); // options can be passed, e.g. {allErrors: true}
 
@@ -14,7 +15,8 @@ export function ajv(data, schema) {
 
 }
 
-
+// This is the schema that we will use to validate user-provided schema
+// It will validate for an schema of array of numbers
 const validationSchema = {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
