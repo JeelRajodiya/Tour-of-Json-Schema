@@ -16,7 +16,9 @@ function KeyBindings({
             {keys.map((key, index) => (
                 <span key={index} className={styles.keyAndPlus}>
                     <span className={styles.key}>{key}</span>
-                    {index !== keys.length - 1 && <span>+</span>}
+                    {index !== keys.length - 1 && (
+                        <span className={styles.plus}>+</span>
+                    )}
                 </span>
             ))}
             {afterText && <span>{afterText}</span>}
