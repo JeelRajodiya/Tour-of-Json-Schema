@@ -18,25 +18,19 @@ function Output({
     } else {
         textColor = isInvalid ? "invalid" : "valid";
     }
-    console.log(textColor);
     return (
         <div className={classnames(styles.output, styles[textColor])}>
             <div className={styles.header}>
-                <div className={styles.title}>Output</div>
-            </div>
-            <div
-                className={classnames(
-                    isInvalid ? styles.invalid : styles.valid,
-                    styles.outputBody
-                )}
-            >
-                {isChildrenEmpty && (
+                <div className={styles.title}>Output </div>
+                <div className={styles.keyBindingsWrapper}>
                     <KeyBindings
-                        keys={["ctrl"]}
+                        keys={["Ctrl", "."]}
                         beforeText="Press "
                         afterText=" to validate"
                     />
-                )}
+                </div>
+            </div>
+            <div className={classnames(styles.outputBody)}>
                 {children?.toString().replaceAll('"', "")}
             </div>
         </div>

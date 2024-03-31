@@ -39,19 +39,18 @@ async function handleValidation(
 export default function Home() {
     const router = useRouter();
     const [code, setCode] = useState<string>(`{\n    \n}`);
-    const [InstructionsMarkdown, setInstructionsMarkdown] =
-        useState<string>("");
-    const [validity, setValidity] = useState<string>("");
-    const [isInvalid, setIsInvalid] = useState<boolean>(true);
 
-    useInstructionsEffect(
-        "/instructions.md",
-        "Step 1 Instructions",
-        code,
-        handleValidation,
-        setInstructionsMarkdown,
+    const {
+        InstructionsMarkdown,
         setIsInvalid,
-        setValidity
+        isInvalid,
+        setValidity,
+        validity,
+    } = useInstructionsEffect(
+        require("./instructions.md"),
+        "Step 1: Writing a valid schema",
+        code,
+        handleValidation
     );
 
     return (

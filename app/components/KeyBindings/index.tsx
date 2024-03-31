@@ -14,7 +14,7 @@ function KeyBindings({
         <div className={styles.keysWrapper}>
             {beforeText && <span>{beforeText}</span>}
             {keys.map((key, index) => (
-                <span key={index}>
+                <span key={index} className={styles.keyAndPlus}>
                     <span className={styles.key}>{key}</span>
                     {index !== keys.length - 1 && <span>+</span>}
                 </span>

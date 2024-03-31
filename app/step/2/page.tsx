@@ -1,54 +1,12 @@
 "use client";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 // import styles from "./2.module.css";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
-import { ajv, hyperjumpValidate } from "@/lib/validators";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-async function handleValidation(
-    setValidity: any,
-    setIsInvalid: any,
-    code: string | undefined
-) {
-    try {
-        const data = [1, 2, 3];
-        const schema = JSON.parse(code!);
-
-        const output = await hyperjumpValidate(data, schema);
-
-        const avjErrors = ajv(data, schema).errors;
-        if (output?.valid) {
-            setValidity(
-                "Great!\nLet's learn about $schema and specifications in the next step."
-            );
-
-            // Manual checking of types and items properties can be avoided,
-            // if we use validation Schema to validate the (user provided) schema itself.
-
-            if (!schema.type) {
-                setIsInvalid(true);
-                setValidity(
-                    "Please specify the type of the data with the 'type' property."
-                );
-                return;
-            } else if (!schema.items) {
-                setIsInvalid(true);
-                setValidity("The schema should have an 'items' property.");
-                return;
-            }
-            setIsInvalid(false);
-        } else {
-            setValidity(avjErrors);
-
-            setIsInvalid(true);
-        }
-    } catch (e) {
-        setValidity(JSON.stringify((e as Error).message));
-        setIsInvalid(true);
-    }
-}
+import { useInstructionsEffect } from "@/lib/hooks";
+import { handleValidation } from "./validationFunction";
 function ValidateBtn({
     code,
     setValidity,
@@ -71,21 +29,23 @@ function ValidateBtn({
 }
 
 export default function Home() {
-    const { pageName, setPageName } = useContext(pageContext);
-
     const router = useRouter();
     const [code, setCode] = useState<string>(
         `{\n    "$schema": "https://json-schema.org/draft/2020-12/schema"\n}`
     );
-    const [InstructionsMarkdown, setInstructionsMarkdown] =
-        useState<string>("");
-    const [validity, setValidity] = useState<string>("");
-    const [isInvalid, setIsInvalid] = useState<boolean>(true);
-    useEffect(() => {
-        const textFile = require("./instructions.md");
-        setInstructionsMarkdown(textFile);
-        setPageName("Step 2: Validating an array of numbers");
-    }, []);
+    const {
+        InstructionsMarkdown,
+        setIsInvalid,
+        isInvalid,
+        setValidity,
+        validity,
+    } = useInstructionsEffect(
+        require("./instructions.md"),
+        "Step 2: Validating an array of numbers",
+        code,
+        handleValidation
+    );
+
     return (
         <CodeLayout
             InstructionsMarkdown={InstructionsMarkdown}

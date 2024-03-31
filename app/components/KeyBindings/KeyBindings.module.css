@@ -1,17 +1,23 @@
 .key {
     font-family: monospace;
-    font-size: medium;
     padding: 2px 6px;
-    border-radius: 8px;
-    background-color: #f1f1f1;
+    border-radius: 6px;
+    background-color: white;
     text-transform: capitalize;
-    border: 2px solid #d1d1d1;
-    border-bottom: 4px solid #d1d1d1;
+    border: 1px solid #969696;
+    border-bottom: 2px solid #8b8b8b;
+    font-size: x-small;
 }
 
 .keysWrapper {
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
+    font-size: small;
+    justify-content: center;
+}
+.keyAndPlus {
+    display: flex;
+    gap: 6px;
 }
