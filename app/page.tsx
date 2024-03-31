@@ -19,7 +19,7 @@ export default function Home() {
                         style={{ width: "64px", height: "64px" }}
                     />
                     <div className={styles.title}>
-                        <div>Tour Of</div>
+                        <div>Tour of</div>
                         <div>JSON</div>
                         <div>Schema</div>
                     </div>
@@ -33,7 +33,7 @@ export default function Home() {
                 /> */}
                 <div className={styles.subtitleWrapper}>
                     <div className={styles.subtitle}>
-                        Learn JSON Schema by examples.
+                        Learn JSON Schema by Examples.
                     </div>
                     <Link href="/step/1">
                         <Button
@@ -42,7 +42,7 @@ export default function Home() {
                                 <ChevronRightIcon width={8} height={8} />
                             }
                         >
-                            Start The Tour
+                            Start the Tour
                         </Button>
                     </Link>
                 </div>

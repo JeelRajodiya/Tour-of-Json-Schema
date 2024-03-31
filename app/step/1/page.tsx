@@ -38,9 +38,7 @@ async function handleValidation(
 
 export default function Home() {
     const router = useRouter();
-    const [code, setCode] = useState<string>(
-        `{\n    "$schema": "https://json-schema.org/draft/2020-12/schema"\n}`
-    );
+    const [code, setCode] = useState<string>(`{\n    \n}`);
     const [InstructionsMarkdown, setInstructionsMarkdown] =
         useState<string>("");
     const [validity, setValidity] = useState<string>("");

@@ -21,14 +21,24 @@ function Output({
     console.log(textColor);
     return (
         <div className={classnames(styles.output, styles[textColor])}>
-            {isChildrenEmpty && (
-                <KeyBindings
-                    keys={["ctrl"]}
-                    beforeText="Press "
-                    afterText=" to validate"
-                />
-            )}
-            {children?.toString().replaceAll('"', "")}
+            <div className={styles.header}>
+                <div className={styles.title}>Output</div>
+            </div>
+            <div
+                className={classnames(
+                    isInvalid ? styles.invalid : styles.valid,
+                    styles.outputBody
+                )}
+            >
+                {isChildrenEmpty && (
+                    <KeyBindings
+                        keys={["ctrl"]}
+                        beforeText="Press "
+                        afterText=" to validate"
+                    />
+                )}
+                {children?.toString().replaceAll('"', "")}
+            </div>
         </div>
     );
 }
