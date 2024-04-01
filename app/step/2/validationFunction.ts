@@ -24,12 +24,14 @@ export async function handleValidation(
             if (!schema.type) {
                 setIsInvalid(true);
                 setValidity(
-                    "Please specify the type of the data with the 'type' property."
+                    "Invalid Schema: Please specify the type of the data with the 'type' property."
                 );
                 return;
             } else if (!schema.items) {
                 setIsInvalid(true);
-                setValidity("The schema should have an 'items' property.");
+                setValidity(
+                    "Invalid Schema: Please specify the items property."
+                );
                 return;
             }
             setIsInvalid(false);
