@@ -30,7 +30,7 @@ async function handleValidation(
 
         const valid = await ajv.validateSchema(schema);
         if (valid) {
-            setValidity("Schema is valid");
+            setValidity("Correct! let's move on to the next step.");
             setIsInvalid(false);
         } else {
             setValidity(ajv.errorsText());
