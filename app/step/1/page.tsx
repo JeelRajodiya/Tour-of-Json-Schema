@@ -1,20 +1,18 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
-import { hyperjumpValidate } from "@/lib/validators";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useInstructionsEffect } from "@/lib/hooks";
 import Ajv2020 from "ajv/dist/2020";
-const ajv = new Ajv2020({ strict: true, allErrors: true });
 
 async function handleValidation(
     setValidity: any,
     setIsInvalid: any,
     code: string | undefined
 ) {
+    const ajv = new Ajv2020({ strict: true, allErrors: true });
     try {
         const schema = JSON.parse(code!);
         if (!schema.$schema) {
