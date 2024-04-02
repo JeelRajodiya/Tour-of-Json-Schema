@@ -4,9 +4,11 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { pageContext } from "@/lib/context";
 import CodeLayout from "@/app/components/CodeLayout";
-import { ajv, hyperjumpValidate } from "@/lib/validators";
+import { hyperjumpValidate } from "@/lib/validators";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useInstructionsEffect } from "@/lib/hooks";
+import Ajv2020 from "ajv/dist/2020";
+const ajv = new Ajv2020({ strict: true, allErrors: true });
 
 async function handleValidation(
     setValidity: any,
@@ -15,19 +17,23 @@ async function handleValidation(
 ) {
     try {
         const schema = JSON.parse(code!);
-        const data1 = {};
-        const data2: any[] = [];
-        const output1 = await hyperjumpValidate(data1, schema);
-        const output2 = await hyperjumpValidate(data2, schema);
+        if (schema.$schema !== "https://json-schema.org/draft/2020-12/schema") {
+            setValidity(
+                "Unable to determine a dialect for the schema. The dialect can be declared in a number of ways, but the recommended way is to use the '$schema' keyword in your schema."
+            );
+            setIsInvalid(true);
+            return;
+        }
 
-        const avjErrors = ajv(data1, schema).errors;
-        if (output1?.valid || output2?.valid) {
-            setValidity("Correct! let's move on to the next step.");
+        // I did not find any function in hyperjump that validates the schema without any data
+        // So decided to use ajv for this step only
 
+        const valid = await ajv.validateSchema(schema);
+        if (valid) {
+            setValidity("Schema is valid");
             setIsInvalid(false);
         } else {
-            setValidity(avjErrors);
-
+            setValidity(ajv.errorsText());
             setIsInvalid(true);
         }
     } catch (e) {
