@@ -1,7 +1,7 @@
 .main {
     display: flex;
     flex-direction: column;
-    padding-bottom: 10em;
+    height: 82%;
 }
 
 .nextBtn {
