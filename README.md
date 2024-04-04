@@ -1,5 +1,8 @@
-# GSoC 2024 - Tour of JSON Schema (Qualification Task)
+# Tour of JSON Schema
 
-The site is hosted on github pages https://jeelrajodiya.github.io/Tour-of-Json-Schema as a SPA (Single Page Application).
+This repository contains the code for the Tour of JSON Schema (Qualification task). The application is built using Next.js and Typescript.
 
-You can also find the site at https://tour-of-json-schema.vercel.app deployed as a Next.js server side app.
+## Live Demo
+
+-   Github pages (SPA): https://jeelrajodiya.github.io/Tour-of-Json-Schema
+-   Vercel (SSR Application): https://tour-of-json-schema.vercel.app
