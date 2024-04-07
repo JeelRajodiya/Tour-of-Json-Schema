@@ -1,6 +1,6 @@
 # Tour of JSON Schema
 
-This repository contains the code for qualification task for GSoC project Tour of JSON Schema.
+This repository contains the code for the qualification task of the GSoC project 'Tour of JSON Schema.'
 
 ## Live Demo
 
