@@ -1,10 +1,7 @@
 "use client";
 
 import { Button } from "@chakra-ui/react";
-import CodeEditor from "./components/CodeEditor";
-import Instructions from "./components/Instructions";
 import styles from "./styles/page.module.css";
-import Image from "next/image";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import JsonIcon from "@/public/icons/json-schema-blue.png";
@@ -24,13 +21,6 @@ export default function Home() {
                         <div>Schema</div>
                     </div>
                 </div>
-                {/* <img
-                    src="./icons/example.png"
-                    alt="example"
-                    style={{
-                        height: 256,
-                    }}
-                /> */}
                 <div className={styles.subtitleWrapper}>
                     <div className={styles.subtitle}>
                         Learn JSON Schema by Examples.
